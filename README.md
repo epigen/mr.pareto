@@ -11,6 +11,20 @@ Get 80% of all standard biomedical data science analyses done automatically with
 
 # How to create a RECIPE?
 
+# Reproducibility using conda
+...
+pro tip: use a dedicated snakemake conda environment folder (e.g., on a non-backed up partition of your HPC) to avoid redundant installations.
+Two options:
+(recommended) Set environmental variable (e.g., bash.rc) 
+```
+export SNAKEMAKE_CONDA_PREFIX=<path/to/conda/directory>
+```
+
+[Snakemake command line parameter:](https://snakemake.readthedocs.io/en/stable/executing/cli.html#CONDA)
+```
+snakemake --conda-prefix <path/to/conda/directory>
+```
+
 # FROM ATAC-seq pipeline to be adapted to fit all Pareto Modules
 
 # Installation
