@@ -13,7 +13,7 @@ Get 80% of all standard biomedical data science analyses done automatically with
 
 # Reproducibility using conda
 ...
-pro tip: use a dedicated snakemake conda environment folder (e.g., on a non-backed up partition of your HPC) to avoid redundant installations.
+pro tip: use a dedicated snakemake conda environment folder (e.g., on a non-backed up partition of your HPC) to avoid redundant installations and consolidate all conda environments installed by snakemake.
 Two options:
 (recommended) Set environmental variable (e.g., bash.rc) 
 ```
