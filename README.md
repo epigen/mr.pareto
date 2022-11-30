@@ -1,15 +1,55 @@
 # Project Pareto
 Get 80% of all standard biomedical data science analyses done automatically with 20% of the effort by leveraging Snakemake's module functionality to use and combining pre-existing workflows
 
-# Terminology & Definitions
+# TL;DR
 
-# MODULES
+Table of contents
+----------------
+  * [Motivation](#motivation)
+  * [Modules](#modules)
+    * [Installation](#installation)
+    * [Configuration](#configuration)
+    * [Execution](#execution)
+    * [Results & Reports](#results)
+  * [Recipes (coming soon)](#recipes)
+  * [Tips](#tips)
+  * [Resources](#resources)
+  * [CeMM Users](#cemm)
 
-# RECIPES
+# Motivation
+
+# Modules
+
+
+## Installation
+
+## Configuration
+
+## Execution
+
+
+<a name="results"/>
+
+## Results & Reports
+
+# Recipes
+--- COMING SOON ---
+
+# Tips
+
+# Resources
+
+<a name="cemm"/>
+
+# CeMM Users
 
 # How to develop a MODULE?
+--- COMING SOON ---
 
 # How to create a RECIPE?
+--- COMING SOON ---
+
+---
 
 # Reproducibility using conda
 ...
