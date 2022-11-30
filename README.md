@@ -1,5 +1,5 @@
 # MR. PARETO - Modules & Recipes for Pragmatic Augmentation of Research Efficiency Towards Optimum
-Get 80% of all standard biomedical data science analyses done semi-automated with 20% of the effort, by leveraging Snakemake's module functionality to use and combine pre-existing workflows into arbitrarily complex analyses.
+Get 80% of all standard biomedical data science analyses done semi-automated with 20% of the effort, by leveraging [Snakemake's](https://snakemake.github.io/) module functionality to use and combine pre-existing workflows into arbitrarily complex analyses.
 
 # TL;DR - More Time for Science!
 - **Goal**: Get 80% of (standard) biomedical data science analyses done semi-automated with 20% of the effort.
@@ -7,9 +7,7 @@ Get 80% of all standard biomedical data science analyses done semi-automated wit
 - **How**: Leverage the latest developments in workflow management to (re-)use and combine independent computational modules into arbitrarily complex analyses.
 - **What**: Independent computational **Modules** implemented as Snakemake workflows, encoding best practices and standard approaches, are used to scale, automate and parallelize analyses. Snakemake's module function enables arbitrarily complex combinations of pre-exsiting modules for any **Project**. **Recipes** combine modules into the most conceivable standard analyses, thereby accelerating projects to the point of the unknown. Altogether this enables complex, portable, transparent, reproducible, documented analysis of biomedical data.
 
-
-Table of contents
-----------------
+# Table of contents
   * [Motivation](#motivation)
   * [Modules](#modules)
     * [Installation](#installation)
@@ -54,74 +52,63 @@ Three key observations at the end of 2021 motivated me to start this project.
 
 
 ## Installation
+The following instructions should take less than 10 minutes to execute and hold true for all Snakemake workflows, including all MR. PARETO modules.
 
-Requirement: conda
+ 1. Install and setup [Snakemake](https://snakemake.readthedocs.io/en/stable/) (only once)
+    1. (only once) install Snakemake, which requires [conda](https://docs.conda.io/en/latest/) and [mamba](https://mamba.readthedocs.io/en/latest/), following the offical [documentation](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html)(the full installation is recommended). 
+       ```{console}
+        conda install -n base -c conda-forge mamba
+        conda activate base
+        mamba create -c conda-forge -c bioconda -n snakemake snakemake
+       ```
+     2. (only once) set environment variables for convenience (optional but recommended, details in [Tips](#tips))
+ 2. clone the workflow repository (only once per workflow)
+     ```{console}
+     git clone git@github.com:epigen/unsupervised_analysis.git
+      ```
 
- 1. only once: install snakemake, which requires conda & mamba, according to the (I recommend full installation)
- 2. only once per module: clone/download this repository
- 3. (optional, but recommended) set environment variables (see details in [Tips](#tips)
-
-
-This should take less than 10 minutes.
-1. install snakemake, which requires conda & mamba, according to the [documentation](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html)
-2. clone/download this repository (eg git clone https://github.com/epigen/atacseq_pipeline.git)
-
-All software/package dependencies are installed and managed automatically via Snakemake and conda (and optional Singularity) and installed upon the first run of the workflow.
+Note: All software dependencies are installed and managed automatically via Snakemake and conda. They are installed upon the first run of the workflow.
 
 ## Configuration
-Configure your analysis:
-    1. depends on the workflow, but is usually described here config/README.md
-    2. most often it is 1 configuration file for configuring the analysis and 1-2 annotation files describing the data or data-specific configurations
-Detailed specifications can be found here [./config/README.md](./config/README.md)
+Configure your analysis
+1. this depends on the workflow and is always described in a separate `README.md` located in the workflow's `config` folder.
+2. most often it is 1 configuration file (`.yaml`) for configuring the analysis (e.g., parameter) and 1-2 annotation files (`.csv`) describing the data or data-specific configurations (e.g., file paths or metadata).
 
 ## Execution
-Run the workflow:
-1. activate the snakemake conda environment
-2. enter the workflow repository
-3. execute the workflow (at CeMM cluster: snakemake -p --use-conda --profile config/slurm.cemm -> this submits ALL planned jobs at once with dependencies, so you do not need a "orchestrating" job running)
-4. tip always perform first a dry run using the flag -n, to check if the configuration works and the workflow does what you intend it to
+Run the workflow from within the Snakemake conda environment and the workflow's root directory.
+1. activate the snakemake conda environment (Snakemake commands only work from within the snakemake conda environment)
+    ```{console}
+    conda activate snakemake
+    ```
+2. enter the workflow directory (always execute from within the top level of the workflow directory)
+    ```{console}
+    cd unsupervised_analysis
+    ```
+3. execute the workflow using conda to install and manage the required software
+    1. **local execution** with one core
+       ```{console}
+       snakemake --use-conda --cores 1
+       ```
+    2. **vanilla cluster execution** with 32 jobs for cluster engines that support shell scripts and have access to a common filesystem, (e.g. the Sun Grid Engine), see [Snakemake Cluster Execution documentation](https://snakemake.readthedocs.io/en/stable/executing/cluster.html)
+       ```{console}
+       snakemake --use-conda --cluster qsub --jobs 32
+       ```
+    3. **configured cluster execution** by using --profile
+       ```{console}
+       snakemake --use-conda --profile path/to/clusterProfile
+       ```
 
-## 1. Change working directory & activate conda environment
-Execute always from within top level of the pipeline directory (ie atacseq_pipeline/).
-Snakemake commands only work from within the snakemake conda environment.
-```
-cd atacseq_pipeline
-conda activate snakemake
-```
-## 2. Execute a dry-run
-command for a dry-run with option -n (-p makes Snakemake print the resulting shell command for illustration)
-```
-snakemake -p -n
-```
-## 3. Execute workflow local or on a cluster
-### 3a. Local execution
-command for execution with one core
-```
-snakemake -p -j1 --use-conda
-```
-### 3b. Cluster execution
-command for **vanilla cluster execution** on cluster engines that support shell scripts and have access to a common filesystem, (e.g. the Sun Grid Engine), more info in the [Snakemake Cluster Execution documentation](https://snakemake.readthedocs.io/en/stable/executing/cluster.html)
-```
-snakemake -p --use-conda --cluster qsub -j 32
-```
+Note: Snakemake cluster profiles are the interface between an OS-agnostic Snakemake workflow and the system it is executed on (e.g., SLURM HPC). If you are working on another cluster engine get your cluster execution profile here: [The Snakemake-Profiles project](https://github.com/snakemake-profiles/doc)
 
-command for **cluster execution by using --profile**, submits every task as separate job with dependencies
-```
-snakemake -p --use-conda --profile config/slurm.cemm
-```
-the profile for CeMM's slurm environment is provided in the config/ directory, of note: 
-- the number of jobs in the slurm.cemm/config.yaml should be set as high as necessary, because arrayed job subsmission does not work (yet) and the scheduler (eg SLURM) should take care of the priorization
-- jobs which dependencies can never be fulfilled are automatically removed from the queue
-
-If you are using another setup get your cluster execution profile here: [The Snakemake-Profiles project](https://github.com/snakemake-profiles/doc)
-Short reminder: Snakemake cluster profiles are the interface between an OS-agnostic Snakemake workflow and the system it is executed on (e.g., HPC).
-
-
-These instructions are also shown in the respective Snakmake workflow catalog entry eg https://snakemake.github.io/snakemake-workflow-catalog/?usage=epigen/dea_limma
+These instructions (installation, configuration, execution) are also shown in the modules' respective [Snakmake workflow catalog entry](https://snakemake.github.io/snakemake-workflow-catalog).
 
 <a name="results"/>
 
 ## Results & Reports
+Finally, you can inspect the results directly and/or use the Snakemake report.
+
+The result directory and report follow deliberately always the same structure to enable the usage of multiple modules within one project (see next section):
+ * ...
 
 <a name="projects"/>
 
@@ -138,6 +125,13 @@ These instructions are also shown in the respective Snakmake workflow catalog en
 <a name="tips"/>
 
 # Pro Tips
+Here are some tips for troubleshooting & FAQs:
+- always first perform a dry-run with option -n
+- 7. tip always perform first a dry run using the flag -n, to check if the configuration works and the workflow does what you intend it to
+command for a dry-run with option -n (-p makes Snakemake print the resulting shell command for illustration)
+```
+snakemake -p -n
+```
 
 set Snakemake environment variables once
 **conda**
@@ -169,6 +163,11 @@ This does 2 things for us:
 I have created a separate repository for CeMM's SLURM cluster profile and removed it from every module/workflow (to reduce redundancy and centralize maintenance).
 
 You can find the repository including documentation here: [https://github.com/epigen/cemm.slurm.sm](https://github.com/epigen/cemm.slurm.sm)
+
+
+the profile for CeMM's slurm environment is provided in the config/ directory, of note: 
+- the number of jobs in the slurm.cemm/config.yaml should be set as high as necessary, because arrayed job subsmission does not work (yet) and the scheduler (eg SLURM) should take care of the priorization
+- jobs which dependencies can never be fulfilled are automatically removed from the queue
 
 # How to develop a MODULE?
 --- COMING SOON ---
@@ -215,8 +214,7 @@ The command creates a self contained HTML based report in a zip archive containi
     - optional: one additional section per split, containing the respective downstream analysis results
 
 # Tips
-Here are some tips for troubleshooting & FAQs:
-- always first perform a dry-run with option -n
+
 - if unsure why a certain rule will be executed use option --reason in the dry run, this will give the reason for the execution of each rule
 - in case the pipeline crashes, you manually canceled your jobs or when snakemake tries to "resume.. resubmit.." jobs, then remove the .snakemake/incomplete directory!
 - if you commit a lot of jobs eg via slurm (>500) this might take some time (ie 1s/job commit)
