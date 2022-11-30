@@ -1,5 +1,5 @@
 # MR. PARETO - Modules & Recipes for Pragmatic Augmentation of Research Efficiency Towards Optimum
-Get 80% of all standard biomedical data science analyses done semi-automated with 20% of the effort, by leveraging Snakemake's module functionality to use and combining pre-existing workflows.
+Get 80% of all standard biomedical data science analyses done semi-automated with 20% of the effort, by leveraging Snakemake's module functionality to use and combine pre-existing workflows into arbitrarily complex analyses.
 
 # TL;DR - More Time for Science!
 - **Goal**: Get 80% of (standard) biomedical data science analyses done semi-automated with 20% of the effort.
