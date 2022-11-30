@@ -1,7 +1,12 @@
-# Project Pareto
-Get 80% of all standard biomedical data science analyses done automatically with 20% of the effort by leveraging Snakemake's module functionality to use and combining pre-existing workflows
+# MR. PARETO - Modules & Recipes for Pragmatic Augmentation of Research Efficiency Towards Optimum
+Get 80% of all standard biomedical data science analyses done semi-automated with 20% of the effort, by leveraging Snakemake's module functionality to use and combining pre-existing workflows.
 
-# TL;DR
+# TL;DR - More Time for Science!
+- **Goal**: Get 80% of (standard) biomedical data science analyses done semi-automated with 20% of the effort.
+- **Why**: By taking care of efficiency (i.e., maximum output with limited resources) scientists can focus on effectivenes (i.e., the biggest impact possible).
+- **How**: Leverage the latest developments in workflow management to (re-)use and combine independent computational modules into arbitrarily complex analyses.
+- **What**: Independent computational **Modules** implemented as Snakemake workflows, encoding best practices and standard approaches, are used to scale, automate and parallelize analyses. Snakemake's module function enables arbitrarilily complex combinations of pre-exsiting modules for any **Project**. **Recipes** combine modules into the most conceivable standard analyses, thereby accelerating projects to the point of the unknown. Altogether this enables complex, portable, transparent, reproducible, documented analysis of biomedical data.
+
 
 Table of contents
 ----------------
@@ -11,6 +16,7 @@ Table of contents
     * [Configuration](#configuration)
     * [Execution](#execution)
     * [Results & Reports](#results)
+  * [Projects using multiple Modules]()
   * [Recipes (coming soon)](#recipes)
   * [Tips](#tips)
   * [Resources](#resources)
@@ -18,8 +24,10 @@ Table of contents
 
 # Motivation
 
-# Modules
 
+# Modules
+Modules are Snakemake workflows, consisting of Rules for multi-step analyses.
+They can be modality-specific (e.g., RNA-seq) or general-purpose (e.g., Unsupervised Analysis).
 
 ## Installation
 
