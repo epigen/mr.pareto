@@ -3,8 +3,8 @@ Get 80% of all standard biomedical data science analyses done semi-automated wit
 
 # TL;DR - More Time for Science!
 - **Why**: Time is the most precious resource. By taking care of efficiency (i.e., maximum output with limited resources) scientists can re-distribute their time to focus on effectivenes (i.e., the biggest impact possible).
-- **How**: Leverage the latest developments in workflow management to (re-)use and combine independent computational modules into arbitrarily complex analyses in combination with modern innovation methods (e.g., fast protoyping, desing thinking and agile concepts).
-- **What**: Independent computational **Modules** implemented as Snakemake workflows, encoding best practices and standard approaches, are used to scale, automate and parallelize analyses. Snakemake's module function enables arbitrarily complex combinations of pre-exsiting modules for any **Project**. **Recipes** combine modules into the most conceivable standard analyses, thereby accelerating projects to the point of the unknown. Altogether this enables complex, portable, transparent, reproducible, documented analysis of biomedical data.
+- **How**: Leverage the latest developments in workflow management to (re-)use and combine independent computational modules into arbitrarily complex analyses in combination with modern innovation methods (e.g., fast protoyping, design thinking and agile concepts).
+- **What**: Independent computational **Modules** implemented as Snakemake workflows, encoding best practices and standard approaches, are used to scale, automate and parallelize analyses. Snakemake's module function enables arbitrarily complex combinations of pre-exsiting modules for any **Project**. **Recipes** combine modules into the most conceivable standard analyses, thereby accelerating projects to the point of the unknown. Altogether this enables complex, portable, transparent, reproducible, documented analysis of biomedical data at scale.
 
 # Table of contents
   * [Motivation](#motivation)
@@ -12,32 +12,30 @@ Get 80% of all standard biomedical data science analyses done semi-automated wit
     * [Installation](#installation)
     * [Configuration](#configuration)
     * [Execution](#execution)
-    * [Results & Reports](#results_reports)
-    * [Sustainability & Reproducibility](#sustainability)
-  * [Projects using multiple Modules](#projects)
-  * [Recipes (coming soon)](#recipes)
+    * [Results & Reports](#results--reports)
+    * [Sustainability & Reproducibility](#sustainability--reproducibility)
+  * [Projects using multiple Modules](#projects-using-multiple-modules)
+  * [Recipes](#recipes)
   * [Tips](#tips)
   * [Resources](#resources)
-  * [CeMM Users](#cemm)
+  * [CeMM Users](#cemm-users)
 
 # Motivation
-> _"Programming is about trying to make the future less painful. It’s about making things easier for our teammates._ from The Pragmatic Programmer by Andy Hunt, Dave Thomas 
+> _"Programming is about trying to make the future less painful. It’s about making things easier for our teammates._" from _The Pragmatic Programmer_ by Andy Hunt & Dave Thomas 
 
 Three key observations at the end of 2021 motivated me to start this project.
   * Increased demand, but limited resources.
-    * The balance between data generators and data analysts is getting worse and communication/understadning is suffering.
-    * There is no sustainable framework to preserve inventions and best practices.
-    * Established innovation methods (e.g., design thinking, fast prototyping/iterations, agile concepts,...) can not be leveraged.
-  * Increased fields of relevance and interest, but not more time.
+    * The balance between data generators and data analysts is getting worse and communication suffers.
+    * There is no sustainable framework to preserve complex inventions and best practices.
+    * Established innovation methods (e.g., design thinking, fast prototyping, agile concepts,...) can not be leveraged.
+  * Increasing number of fields of relevance and interest, but not more time.
     * Staying current in one field is getting harder.
     * Getting into novel fields takes time and is risky.
-    * Method development is very competitive and takes a lot of time, hence it can not be done on the side.
+    * Method development is very competitive and takes a lot of time, hence it requires determination and focus.
   * Reproducibility crisis and recent technological developments.
     * Established analysis/approaches are often “reinvented”, leading to irreproducible results.
     * Recent developments in workflow management enable a mindset shift towards software engineering best practices.
     * Compounding effects of re-using established best practices become possible.
-
-
 
 # Modules
 > _"Is it functional, multifunctional, durable, well-fitted, simple, easy to maintain, and thoroughly tested? Does it provide added value, and doesn't cause unnecessary harm? Can it be simpler? Is it an innovation?"_ - Patagonia Design Principles
@@ -60,14 +58,14 @@ Three key observations at the end of 2021 motivated me to start this project.
 The following instructions should take less than 10 minutes to execute and hold true for any Snakemake workflow, including all MR. PARETO modules.
 
   1. Install and setup [Snakemake](https://snakemake.readthedocs.io/en/stable/) (only once)
-      1. (only once) install Snakemake, which requires [conda](https://docs.conda.io/en/latest/) and [mamba](https://mamba.readthedocs.io/en/latest/), following the offical [documentation](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html)(the full installation is recommended). 
+      1. install Snakemake, which requires [conda](https://docs.conda.io/en/latest/) and [mamba](https://mamba.readthedocs.io/en/latest/), following the offical [documentation](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html) (the full installation is recommended). 
           ```console
           conda install -n base -c conda-forge mamba
           conda activate base
           mamba create -c conda-forge -c bioconda -n snakemake snakemake
           ```
-     2. (only once) set Snakemake environment variables for convenience (optional, but highly recommended)
-         1. configure a **dedicated snakemake conda environment folder** (e.g., on a non-backed up partition of your cluster) to avoid redundant installations and consolidate all conda environments installed by snakemake in one easy to manage location.
+     2. set Snakemake environment variables for convenience (optional, but highly recommended)
+         1. configure a **dedicated Snakemake conda environment folder** (e.g., on a non-backed up partition of your cluster) to avoid redundant installations and consolidate all conda environments installed by Snakemake in one easy to manage location.
              ```bash
              # put this in your .bashrc profile
              export SNAKEMAKE_CONDA_PREFIX = path/to/conda/directory
@@ -77,7 +75,7 @@ The following instructions should take less than 10 minutes to execute and hold 
              # put this in your .bashrc profile
              export SNAKEMAKE_PROFILE = path/to/your/cluster/profile
              ```
-  2. (only once per module) clone the `{module}` repository 
+  2. clone the `{module}` repository (only once per module)
      ```console
      git clone git@github.com:user/{module}.git
       ```
@@ -85,7 +83,7 @@ The following instructions should take less than 10 minutes to execute and hold 
 **Note**: All software dependencies are installed and managed automatically via Snakemake and conda. They are installed upon the first run of the module.
 
 ## Configuration
-Configure your analysis
+Configure your analysis:
 1. this depends on the module and is always described in a separate `README.md` located in the module's `config` folder (i.e., `{module}/config/README.md`).
 2. most often it is 1 configuration file (`.yaml`) for configuring the analysis (e.g., parameters) and 1-2 annotation files (`.csv`) describing the data or data-specific configurations (e.g., file paths or metadata).
 
@@ -108,7 +106,7 @@ Run the `{module}` from within the Snakemake conda environment and the module's 
        ```{console}
        snakemake --use-conda --cluster qsub --jobs 32
        ```
-    3. **configured cluster execution** by using --profile
+    3. **configured cluster execution** by using --profile (not necessary if you set it as environment variable before)
        ```{console}
        snakemake --use-conda --profile path/to/clusterProfile
        ```
@@ -116,8 +114,6 @@ Run the `{module}` from within the Snakemake conda environment and the module's 
 **Note**: Snakemake cluster profiles are the interface between an OS-agnostic Snakemake workflow and the system it is executed on (e.g., SLURM HPC). If you are working on another cluster engine get your cluster execution profile here: [The Snakemake-Profiles project](https://github.com/snakemake-profiles/doc)
 
 These instructions (installation, configuration, execution) are also shown in the modules' respective [Snakmake workflow catalog entry](https://snakemake.github.io/snakemake-workflow-catalog).
-
-<a name="results_reports"/>
 
 ## Results & Reports
 Finally, you can inspect the results directly and/or create a [Snakemake report](https://snakemake.readthedocs.io/en/stable/snakefiles/reporting.html).
@@ -148,9 +144,7 @@ The command creates a self-contained HTML based report in a ZIP archive with the
     - Software/`{project}_{module}/` (e.g., `Software/myProject_unsupervised_analysis/sklearn.yaml`)
     - `{project}_{module}`: one top level **category**, and **subcategories** for subsets/analyses containing results of all respective analysis steps (e.g., `myProject_unsupervised_analysis`).
 
-**Both, the `{project}` result-directory and report, deliberately follow the same structure for every module to enable the (repititive) usage of different modules within one project with multiple data sets (see next section for details).**
-
-<a name="sustainability"/>
+**Both, the `{project}` result-directory and the report, deliberately follow the same structure for every module to enable the (repititive) usage of different modules within one project with multiple data sets (see [Projects](#projects-using-multiple-modules) section for details).**
 
 ## Sustainability & Reproducibility
 To ensure sustainable development, implicit documentation and reproducibility each `{module}` has to fulfill the following requirements:
@@ -177,9 +171,7 @@ To ensure sustainable development, implicit documentation and reproducibility ea
 - Software Management with [conda](https://docs.conda.io/en/latest/) for reproducibilty
 - (COMING SOON) Containerization with Docker/Singularity for OS-level virtualization
     - final frontier to be explored and implemented across MR. PARETO modules
-    - automated since Snakemake 6.0.0 (released in 2021-02-26)
-
-<a name="projects"/>
+    - automated containerization supported since Snakemake 6.0.0 (released in 2021-02-26)
 
 # Projects using multiple Modules
 
@@ -192,7 +184,6 @@ Here are links to the documentation on how to use a module in another Snakemake 
 - [Snakemake - Modules](https://snakemake.readthedocs.io/en/stable/snakefiles/modularization.html#snakefiles-modules)
 - [Snakemake - Using and combining pre-exising workflows](https://snakemake.readthedocs.io/en/stable/snakefiles/deployment.html#using-and-combining-pre-exising-workflows)
 
-
 --- MORE DETAILS COMING SOON ---
 
 # Recipes
@@ -201,18 +192,21 @@ Recipes are templates for standard analyses and consist of default combinations 
 --- COMING SOON ---
 
 # Tips
-Here are some tips for better understanding & troubleshooting that I found useful.
-- always use the flag -p that makes Snakemake print the resulting shell command for illustration
+Here are some tips for better understanding and troubleshooting that I found useful.
+- always use the flag `-p` that makes Snakemake print the resulting shell commands  that will be executed.
     ```console
     snakemake -p
     ```
-- always perform first a dry run using the flag `-n`, to check if the configuration works and the workflow does what you intend it to do
+- always perform first a dry run using the flag `-n`, to check if the configuration works and the workflow does what you intend it to do.
     ```console
     snakemake -p -n
     ```
-- if unsure why a certain rule will be executed use option `--reason` during the dry run, this will give the reason for the execution of each rule
-- in case a module crashes, you manually canceled your jobs or when Snakemake tries to "resume.. resubmit.." jobs, then remove the `.snakemake/incomplete` directory
-- command for generating the directed acyclic graph (DAG) of all jobs with current configuration (most often too large to inspect)
+- if unsure why a certain rule will be executed use option `--reason` during the dry run, this will give the reason for the execution of each rule.
+    ```console
+    snakemake -p -n --reason
+    ```
+- in case a module crashes, you manually canceled your jobs or when Snakemake gets stuck trying to "resume.. resubmit.." jobs, then remove the `.snakemake/incomplete` directory.
+- command for generating the directed acyclic graph (DAG) of all jobs with current configuration for visual inspection (most often too large to inspect).
     ```console
     snakemake --dag --forceall | dot -Tsvg > workflow/dags/all_DAG.svg
     ```
@@ -220,7 +214,7 @@ Here are some tips for better understanding & troubleshooting that I found usefu
 # Resources
 - [GitHub list of MR. PARETO modules](https://github.com/stars/sreichl/lists/mr-pareto)
 - [My Data Science Setup - Tutorial](https://bit.ly/TAP-data-science-setup)
-- Curated and published workflows to be used as modules
+- Curated and published workflows that could be used as modules:
     - [Snakemake Workflow Catalog](https://snakemake.github.io/snakemake-workflow-catalog/)
     - [WorkflowHub](https://workflowhub.eu/)
     - [SnakePipes](https://snakepipes.readthedocs.io/en/latest/index.html)
@@ -230,9 +224,6 @@ Here are some tips for better understanding & troubleshooting that I found usefu
     - [Conda](https://docs.conda.io/en/latest/)
     - [Docker](https://www.docker.com/)
     - [Singularity](https://docs.sylabs.io/guides/3.5/user-guide/index.html#) 
-    
-
-<a name="cemm"/>
 
 # CeMM Users
 We created a Snakemake cluster profile and job conductor for the HPC at [CeMM](https://cemm.at/). You can find the repository including documentation and instructions here [cemm.slurm.sm](https://github.com/epigen/cemm.slurm.sm).
