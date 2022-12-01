@@ -16,7 +16,7 @@ Get 80% of all standard biomedical data science analyses done semi-automated wit
     * [Sustainability & Reproducibility](#sustainability)
   * [Projects using multiple Modules](#projects)
   * [Recipes (coming soon)](#recipes)
-  * [Pro Tips](#tips)
+  * [Tips](#tips)
   * [Resources](#resources)
   * [CeMM Users](#cemm)
 
@@ -156,9 +156,13 @@ The command creates a self-contained HTML based report in a ZIP archive with the
 To ensure sustainable development, implicit documentation and reproducibility each `{module}` has to fulfill the following requirements:
 - GitHub repository for development and version control
     - descriptive name (i.e., what it does and purpose e.g, dea_limma) and split by underscores '_'
-    - repository structure according to [Snakemake's recommendation](https://snakemake.readthedocs.io/en/stable/snakefiles/deployment.html)
     - README according to the provided [template](README_template.md)
+    - repository structure according to [Snakemake's recommendation](https://snakemake.readthedocs.io/en/stable/snakefiles/deployment.html)
     - [releases](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) (i.e.,  versions) according to the [semantic versioning scheme](https://semver.org/)
+    - Workflow rulegraph in `workflow/dags/rulegraph.svg`
+        ```console
+        snakemake --rulegraph --forceall | dot -Tsvg > workflow/dags/rulegraph.svg
+        ```
     - GitHub page displaying the README
 - Zenodo repository to ensure compatibility, citability and long-term archiving
     - via [automated GitHub hook](https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content) 
@@ -172,7 +176,8 @@ To ensure sustainable development, implicit documentation and reproducibility ea
     - following the [above](#results) described structure to enhance reproducibility (via export of used software and configuration) and ensure module compatibility
 - Software Management with [conda](https://docs.conda.io/en/latest/) for reproducibilty
 - (COMING SOON) Containerization with Docker/Singularity for OS-level virtualization
-    - final frontier to be explored and implemented across MR. PARETO modules.
+    - final frontier to be explored and implemented across MR. PARETO modules
+    - automated since Snakemake 6.0.0 (released in 2021-02-26)
 
 <a name="projects"/>
 
@@ -180,45 +185,44 @@ To ensure sustainable development, implicit documentation and reproducibility ea
 
 > _"The Pareto principle states that for many outcomes, roughly 80% of consequences come from 20% of causes (the "vital few")."_
 
-The combination of multiple modules into projects represents the overarching vision of MR. PARETO, but are currently for experienced Snakemake users only. When applied to multiple datasets within a research project, each dataset has their own result directory.
+The combination of multiple modules into projects represents the overarching vision of MR. PARETO, but are currently for experienced Snakemake users only. When applied to multiple datasets within a research project, each dataset should have their own result directory within a project directory.
 
-Use as module in another Snakemake workflow (soon)
-- [https://snakemake.readthedocs.io/en/stable/snakefiles/modularization.html#snakefiles-modules](https://snakemake.readthedocs.io/en/stable/snakefiles/modularization.html#snakefiles-modules)
-- [https://slides.com/johanneskoester/snakemake-6#/8](https://slides.com/johanneskoester/snakemake-6#/8)
+Here are links to the documentation on how to use a module in another Snakemake workflow:
+- [Introduction to the Module system with Snakemake 6.0.0 released in 2021-02-26](https://slides.com/johanneskoester/snakemake-6#/8)
+- [Snakemake - Modules](https://snakemake.readthedocs.io/en/stable/snakefiles/modularization.html#snakefiles-modules)
+- [Snakemake - Using and combining pre-exising workflows](https://snakemake.readthedocs.io/en/stable/snakefiles/deployment.html#using-and-combining-pre-exising-workflows)
+
+
+--- MORE DETAILS COMING SOON ---
 
 # Recipes
 Recipes are templates for standard analyses and consist of default combinations of modules (e.g., bulk RNA-seq DEA or scCRISPR-seq analysis).
 
 --- COMING SOON ---
 
-<a name="tips"/>
-
-# Pro Tips
-Here are some tips for troubleshooting & FAQs:
-- always first perform a dry-run with option -n
-- tip always perform first a dry run using the flag -n, to check if the configuration works and the workflow does what you intend it to
-command for a dry-run with option -n (-p makes Snakemake print the resulting shell command for illustration)
-```
-snakemake -p -n
-```
-- if unsure why a certain rule will be executed use option --reason in the dry run, this will give the reason for the execution of each rule
-- in case the pipeline crashes, you manually canceled your jobs or when snakemake tries to "resume.. resubmit.." jobs, then remove the .snakemake/incomplete directory!
-- if you commit a lot of jobs eg via slurm (>500) this might take some time (ie 1s/job commit)
-- command for generating the workflow's rulegraph
-```
-snakemake --rulegraph --forceall | dot -Tsvg > workflow/dags/atacseq_pipeline_rulegraph.svg
-```
-provided in workflow/dags
-- command for generating the directed acyclic graph (DAG) of all jobs with current configuration
-```
-snakemake --dag --forceall | dot -Tsvg > workflow/dags/all_DAG.svg
-```
-provided for both test examples in workflow/dags
+# Tips
+Here are some tips for better understanding & troubleshooting that I found useful.
+- always use the flag -p that makes Snakemake print the resulting shell command for illustration
+    ```console
+    snakemake -p
+    ```
+- always perform first a dry run using the flag `-n`, to check if the configuration works and the workflow does what you intend it to do
+    ```console
+    snakemake -p -n
+    ```
+- if unsure why a certain rule will be executed use option `--reason` during the dry run, this will give the reason for the execution of each rule
+- in case a module crashes, you manually canceled your jobs or when Snakemake tries to "resume.. resubmit.." jobs, then remove the `.snakemake/incomplete` directory
+- command for generating the directed acyclic graph (DAG) of all jobs with current configuration (most often too large to inspect)
+    ```console
+    snakemake --dag --forceall | dot -Tsvg > workflow/dags/all_DAG.svg
+    ```
 
 # Resources
 - [GitHub list of MR. PARETO modules](https://github.com/stars/sreichl/lists/mr-pareto)
+- [My Data Science Setup - Tutorial](https://bit.ly/TAP-data-science-setup)
 - Curated and published workflows to be used as modules
     - [Snakemake Workflow Catalog](https://snakemake.github.io/snakemake-workflow-catalog/)
+    - [WorkflowHub](https://workflowhub.eu/)
     - [SnakePipes](https://snakepipes.readthedocs.io/en/latest/index.html)
     - [Seq2Science](https://vanheeringen-lab.github.io/seq2science/index.html)
 - Software
@@ -231,5 +235,4 @@ provided for both test examples in workflow/dags
 <a name="cemm"/>
 
 # CeMM Users
-We created a Snakemake SLURM cluster profile for the HPC at [CeMM](https://cemm.at/). You can find the repository including documentation and instructions here [cemm.slurm.sm](https://github.com/epigen/cemm.slurm.sm)
-
+We created a Snakemake cluster profile and job conductor for the HPC at [CeMM](https://cemm.at/). You can find the repository including documentation and instructions here [cemm.slurm.sm](https://github.com/epigen/cemm.slurm.sm).
