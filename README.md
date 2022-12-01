@@ -13,15 +13,17 @@ Get 80% of all standard biomedical data science analyses done semi-automated wit
     * [Installation](#installation)
     * [Configuration](#configuration)
     * [Execution](#execution)
-    * [Results & Reports](#results)
+    * [Results & Reports](#results_reports)
+    * [Sustainability & Reproducibility](#sustainability)
   * [Projects using multiple Modules](#projects)
   * [Recipes (coming soon)](#recipes)
-  * [Sustainability & Reproducibility](#sustainability)
   * [Pro Tips](#tips)
   * [Resources](#resources)
   * [CeMM Users](#cemm)
 
 # Motivation
+> _"Programming is about trying to make the future less painful. It’s about making things easier for our teammates._ from The Pragmatic Programmer by Andy Hunt, Dave Thomas 
+
 Three key observations at the end of 2021 motivated me to start this project.
   * Increased demand, but limited resources.
     * The balance between data generators and data analysts is getting worse and communication/understadning is suffering.
@@ -36,8 +38,12 @@ Three key observations at the end of 2021 motivated me to start this project.
     * Recent developments in workflow management enable a mindset shift towards software engineering best practices.
     * Compounding effects of re-using established best practices become possible.
 
+
+
 # Modules
-**Modules** are Snakemake workflows, consisting of **Rules** for multi-step analyses. They can be modality-specific (e.g., ATAC-seq processing) or general-purpose (e.g., Unsupervised Analysis). Currently, the following eight modules are available:
+> _"Is it functional, multifunctional, durable, well-fitted, simple, easy to maintain, and thoroughly tested? Does it provide added value, and doesn't cause unnecessary harm? Can it be simpler? Is it an innovation?"_ - Patagonia Design Principles
+
+**Modules** are Snakemake workflows, consisting of **Rules** for multi-step analyses, that are independent and self-contained. A `{module}` can be modality-specific (e.g., ATAC-seq processing) or general-purpose (e.g., Unsupervised Analysis). Currently, the following eight modules are available:
 
 | Module | Module Type (Data Modality) |
 | :---: | :---: |
@@ -52,14 +58,14 @@ Three key observations at the end of 2021 motivated me to start this project.
 
 
 ## Installation
-The following instructions should take less than 10 minutes to execute and hold true for all Snakemake workflows, including all MR. PARETO modules.
+The following instructions should take less than 10 minutes to execute and hold true for any Snakemake workflow, including all MR. PARETO modules.
 
   1. Install and setup [Snakemake](https://snakemake.readthedocs.io/en/stable/) (only once)
       1. (only once) install Snakemake, which requires [conda](https://docs.conda.io/en/latest/) and [mamba](https://mamba.readthedocs.io/en/latest/), following the offical [documentation](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html)(the full installation is recommended). 
           ```console
-            conda install -n base -c conda-forge mamba
-            conda activate base
-            mamba create -c conda-forge -c bioconda -n snakemake snakemake
+          conda install -n base -c conda-forge mamba
+          conda activate base
+          mamba create -c conda-forge -c bioconda -n snakemake snakemake
           ```
      2. (only once) set Snakemake environment variables for convenience (optional, but highly recommended)
          1. configure a **dedicated snakemake conda environment folder** (e.g., on a non-backed up partition of your cluster) to avoid redundant installations and consolidate all conda environments installed by snakemake in one easy to manage location.
@@ -72,31 +78,31 @@ The following instructions should take less than 10 minutes to execute and hold 
              # put this in your .bashrc profile
              export SNAKEMAKE_PROFILE = path/to/your/cluster/profile
              ```
-  2. (only once per workflow) clone the workflow repository 
+  2. (only once per module) clone the `{module}` repository 
      ```console
-     git clone git@github.com:user/workflow_name.git
+     git clone git@github.com:user/{module}.git
       ```
 
-Note: All software dependencies are installed and managed automatically via Snakemake and conda. They are installed upon the first run of the workflow.
+Note: All software dependencies are installed and managed automatically via Snakemake and conda. They are installed upon the first run of the module.
 
 ## Configuration
 Configure your analysis
-1. this depends on the workflow and is always described in a separate `README.md` located in the workflow's `config` folder.
-2. most often it is 1 configuration file (`.yaml`) for configuring the analysis (e.g., parameter) and 1-2 annotation files (`.csv`) describing the data or data-specific configurations (e.g., file paths or metadata).
+1. this depends on the module and is always described in a separate `README.md` located in the module's `config` folder (i.e., `{module}/config/README.md`).
+2. most often it is 1 configuration file (`.yaml`) for configuring the analysis (e.g., parameters) and 1-2 annotation files (`.csv`) describing the data or data-specific configurations (e.g., file paths or metadata).
 
 ## Execution
-Run the workflow from within the Snakemake conda environment and the workflow's root directory.
+Run the `{module}` from within the Snakemake conda environment and the module's root directory.
 1. activate the snakemake conda environment (Snakemake commands only work from within the snakemake conda environment)
-    ```{console}
+    ```console
     conda activate snakemake
     ```
-2. enter the workflow directory (always execute from within the top level of the workflow directory)
-    ```{console}
-    cd unsupervised_analysis
+2. enter the `{module}` directory (always execute from within the top level of the module directory)
+    ```console
+    cd {module}
     ```
-3. execute the workflow using conda to install and manage the required software
+3. execute the module, while using conda to install and manage the required software
     1. **local execution** with one core
-       ```{console}
+       ```console
        snakemake --use-conda --cores 1
        ```
     2. **vanilla cluster execution** with 32 jobs for cluster engines that support shell scripts and have access to a common filesystem, (e.g. the Sun Grid Engine), see [Snakemake Cluster Execution documentation](https://snakemake.readthedocs.io/en/stable/executing/cluster.html)
@@ -112,7 +118,7 @@ Note: Snakemake cluster profiles are the interface between an OS-agnostic Sna
 
 These instructions (installation, configuration, execution) are also shown in the modules' respective [Snakmake workflow catalog entry](https://snakemake.github.io/snakemake-workflow-catalog).
 
-<a name="results"/>
+<a name="results_reports"/>
 
 ## Results & Reports
 Finally, you can inspect the results directly and/or create a [Snakemake report](https://snakemake.readthedocs.io/en/stable/snakefiles/reporting.html).
@@ -143,40 +149,73 @@ The command creates a self-contained HTML based report in a ZIP archive with the
     - Software/`{project}_{module}/` (e.g., `Software/myProject_unsupervised_analysis/sklearn.yaml`)
     - `{project}_{module}`: one top level **category**, and **subcategories** for subsets/analyses containing results of all respective analysis steps (e.g., `myProject_unsupervised_analysis`).
 
-
-
 **Both, the `{project}` result-directory and report, deliberately follow the same structure for every module to enable the (repititive) usage of different modules within one project with multiple data sets (see next section for details).**
+
+## Sustainability & Reproducibility
+To ensure sustainable development, implicit documentation and reproducibility each `{module}` has to fulfill the following requirements:
+- GitHub repository for development and version control
+    - name: descriptive (i.e., what it does and purpose e.g, dea_limma) and split by underscores '_'
+    - repository structure according to [Snakemake's recommendation](https://snakemake.readthedocs.io/en/stable/snakefiles/deployment.html)
+    - README according to the provided [template](README_template.md)
+    - [releases](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) (i.e.,  versions) according to the [semantic versioning scheme](https://semver.org/)
+- Zenodo repository to ensure compatibility, citability and long-term archiving
+    - via [automated GitHub hook](https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content) 
+    - every GitHub release will trigger the creation of a new release in the Zenodo repository, and thereby a new DOI
+    - there is one permanent DOI that can be used to reference/cite all releases/versions of a given repository
+- [Snakemake Workflow Catalog](https://snakemake.github.io/snakemake-workflow-catalog/) entry
+   - increase visibility by fulfilling the requirements for [Standardized Usage](https://snakemake.github.io/snakemake-workflow-catalog/?rules=true)
+- Snakemake Report for implicit documentation and collaboration
+    - following the [above](#report) described structure
+- Result directory 
+    - following the [above](#results) described structure
+- Software Management with [conda](https://docs.conda.io/en/latest/) for reproducibilty
+- (COMING SOON) Containerization for OS-level virtualization
+    - final frontier to be explored and implemented across MR. PARETO modules.
 
 <a name="projects"/>
 
-# Projects using multiple Modules (game changing superpower)
---- COMING SOON ---
-When applied to multiple datasets within a research project, each dataset has their own result directory.
+# Projects using multiple Modules
+
+> _"The Pareto principle states that for many outcomes, roughly 80% of consequences come from 20% of causes (the "vital few")."_
+
+The combination of multiple modules into projects represents the overarching vision of MR. PARETO, but are currently for experienced Snakemake users only. When applied to multiple datasets within a research project, each dataset has their own result directory.
+
+Use as module in another Snakemake workflow (soon)
+- [https://snakemake.readthedocs.io/en/stable/snakefiles/modularization.html#snakefiles-modules](https://snakemake.readthedocs.io/en/stable/snakefiles/modularization.html#snakefiles-modules)
+- [https://slides.com/johanneskoester/snakemake-6#/8](https://slides.com/johanneskoester/snakemake-6#/8)
 
 # Recipes
+Recipes are templates for standard analyses and consist of default combinations of modules (e.g., bulk RNA-seq DEA or scCRISPR-seq analysis).
+
 --- COMING SOON ---
 
 <a name="sustainability"/>
 
-# Sustainability & Reproducibility
 
-each module has its own GitHub repository with releases (ie versions), connected to a Zenodo repository to ensure compatibility and citability
-
-has a prewritten Method section template in docs
-
-generates a report with ONE category "{project_name}\_{module_name}", and subcategory per data set/run/split containing all respective analysis steps
 
 <a name="tips"/>
 
 # Pro Tips
 Here are some tips for troubleshooting & FAQs:
 - always first perform a dry-run with option -n
-- 7. tip always perform first a dry run using the flag -n, to check if the configuration works and the workflow does what you intend it to
+- tip always perform first a dry run using the flag -n, to check if the configuration works and the workflow does what you intend it to
 command for a dry-run with option -n (-p makes Snakemake print the resulting shell command for illustration)
 ```
 snakemake -p -n
 ```
-
+- if unsure why a certain rule will be executed use option --reason in the dry run, this will give the reason for the execution of each rule
+- in case the pipeline crashes, you manually canceled your jobs or when snakemake tries to "resume.. resubmit.." jobs, then remove the .snakemake/incomplete directory!
+- if you commit a lot of jobs eg via slurm (>500) this might take some time (ie 1s/job commit)
+- command for generating the workflow's rulegraph
+```
+snakemake --rulegraph --forceall | dot -Tsvg > workflow/dags/atacseq_pipeline_rulegraph.svg
+```
+provided in workflow/dags
+- command for generating the directed acyclic graph (DAG) of all jobs with current configuration
+```
+snakemake --dag --forceall | dot -Tsvg > workflow/dags/all_DAG.svg
+```
+provided for both test examples in workflow/dags
 
 
  
@@ -185,16 +224,7 @@ snakemake -p -n
 <a name="cemm"/>
 
 # CeMM Users
-I have created a separate repository for CeMM's SLURM cluster profile and removed it from every module/workflow (to reduce redundancy and centralize maintenance).
-
-You can find the repository including documentation here: [https://github.com/epigen/cemm.slurm.sm](https://github.com/epigen/cemm.slurm.sm)
-
-
-the profile for CeMM's slurm environment is provided in the config/ directory, of note: 
-- the number of jobs in the slurm.cemm/config.yaml should be set as high as necessary, because arrayed job subsmission does not work (yet) and the scheduler (eg SLURM) should take care of the priorization
-- jobs which dependencies can never be fulfilled are automatically removed from the queue
-
-
+We created a Snakemake SLURM cluster profile for the HPC at [CeMM](https://cemm.at/). You can find the repository including documentation and instructions here [cemm.slurm.sm](https://github.com/epigen/cemm.slurm.sm)
 ---
 ---
 
@@ -212,25 +242,3 @@ command for execution with singularity, just add the flag --use-singularity and 
 ```
 snakemake -p --use-conda --use-singularity --singularity-args "--bind /nobackup:/nobackup --bind /research:/research --bind /home:/home"
 ```
-# Module
-Use as module in another Snakemake workflow (soon)
-- [https://snakemake.readthedocs.io/en/stable/snakefiles/modularization.html#snakefiles-modules](https://snakemake.readthedocs.io/en/stable/snakefiles/modularization.html#snakefiles-modules)
-- [https://slides.com/johanneskoester/snakemake-6#/8](https://slides.com/johanneskoester/snakemake-6#/8)
-
-
-
-# Tips
-
-- if unsure why a certain rule will be executed use option --reason in the dry run, this will give the reason for the execution of each rule
-- in case the pipeline crashes, you manually canceled your jobs or when snakemake tries to "resume.. resubmit.." jobs, then remove the .snakemake/incomplete directory!
-- if you commit a lot of jobs eg via slurm (>500) this might take some time (ie 1s/job commit)
-- command for generating the workflow's rulegraph
-```
-snakemake --rulegraph --forceall | dot -Tsvg > workflow/dags/atacseq_pipeline_rulegraph.svg
-```
-provided in workflow/dags
-- command for generating the directed acyclic graph (DAG) of all jobs with current configuration
-```
-snakemake --dag --forceall | dot -Tsvg > workflow/dags/all_DAG.svg
-```
-provided for both test examples in workflow/dags
