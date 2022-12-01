@@ -54,17 +54,27 @@ Three key observations at the end of 2021 motivated me to start this project.
 ## Installation
 The following instructions should take less than 10 minutes to execute and hold true for all Snakemake workflows, including all MR. PARETO modules.
 
- 1. Install and setup [Snakemake](https://snakemake.readthedocs.io/en/stable/) (only once)
-    1. (only once) install Snakemake, which requires [conda](https://docs.conda.io/en/latest/) and [mamba](https://mamba.readthedocs.io/en/latest/), following the offical [documentation](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html)(the full installation is recommended). 
-       ```{console}
-        conda install -n base -c conda-forge mamba
-        conda activate base
-        mamba create -c conda-forge -c bioconda -n snakemake snakemake
-       ```
-     2. (only once) set environment variables for convenience (optional but recommended, details in [Tips](#tips))
- 2. clone the workflow repository (only once per workflow)
-     ```{console}
-     git clone git@github.com:epigen/unsupervised_analysis.git
+  1. Install and setup [Snakemake](https://snakemake.readthedocs.io/en/stable/) (only once)
+      1. (only once) install Snakemake, which requires [conda](https://docs.conda.io/en/latest/) and [mamba](https://mamba.readthedocs.io/en/latest/), following the offical [documentation](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html)(the full installation is recommended). 
+          ```console
+            conda install -n base -c conda-forge mamba
+            conda activate base
+            mamba create -c conda-forge -c bioconda -n snakemake snakemake
+          ```
+     2. (only once) set Snakemake environment variables for convenience (optional, but highly recommended)
+         1. configure a **dedicated snakemake conda environment folder** (e.g., on a non-backed up partition of your cluster) to avoid redundant installations and consolidate all conda environments installed by snakemake in one easy to manage location.
+             ```bash
+             # put this in your .bashrc profile
+             export SNAKEMAKE_CONDA_PREFIX = path/to/conda/directory
+             ```
+         2. if you work on a cluster: configure location of your **cluster profile** (i.e., interface between Snakemake and your cluster's workload manager)
+             ```bash
+             # put this in your .bashrc profile
+             export SNAKEMAKE_PROFILE = path/to/your/cluster/profile
+             ```
+  2. (only once per workflow) clone the workflow repository 
+     ```console
+     git clone git@github.com:user/workflow_name.git
       ```
 
 Note: All software dependencies are installed and managed automatically via Snakemake and conda. They are installed upon the first run of the workflow.
@@ -105,15 +115,43 @@ These instructions (installation, configuration, execution) are also shown in th
 <a name="results"/>
 
 ## Results & Reports
-Finally, you can inspect the results directly and/or use the Snakemake report.
+Finally, you can inspect the results directly and/or create a [Snakemake report](https://snakemake.readthedocs.io/en/stable/snakefiles/reporting.html).
+In the following, `{project}` refers to a dataset and its potential subsets/analyses that are analyzed by a `{module}`.
 
-The result directory and report follow deliberately always the same structure to enable the usage of multiple modules within one project (see next section):
- * ...
+### Results
+Next to the expected `{module}` outputs (i.e., results), a complete conda export of the actually used software as `.yaml` files (environments) and copies of all provided configuration and annotation files (configurations), are provided within the `{project}` `{result_directory}`.
+
+`{result_directory}/` (e.g., `myProject`)
+  - `{module}/` contains all result files with subfolders for each subset/analysis (e.g., `unsupervised_analysis/`).
+  - `envs/{module}/` (e.g., `envs/unsupervised_analysis/sklearn.yaml`)
+  - `configs/{module}/` (e.g., `configs/unsupervised_analysis/myProject_unsupervised_analyis_config.yaml`)
+
+### Report
+The files contained in the report are most of the time a subset of all results focusing on visualizations.
+```bash
+# this can take a few minutes, depending on the size and number of files in the results
+snakemake --report /absolute/path/to/report.zip
+```
+
+The command creates a self-contained HTML based report in a ZIP archive with the following sections:
+- GENERAL (automatically filled by Snakemake)
+    - Workflow: interactive rulegraph recapitulating individual steps, used software and concrete code of the `{module}`
+    - Statistics: duration and timing of individual steps
+    - About: information on the "Embedded Packages" used by the report
+- RESULT (module specific result section)
+    - Configuration/`{project}_{module}/` (e.g., `Configuration/myProject_unsupervised_analysis/myProject_unsupervised_analyis_config.yaml`)
+    - Software/`{project}_{module}/` (e.g., `Software/myProject_unsupervised_analysis/sklearn.yaml`)
+    - `{project}_{module}`: one top level **category**, and **subcategories** for subsets/analyses containing results of all respective analysis steps (e.g., `myProject_unsupervised_analysis`).
+
+
+
+**Both, the `{project}` result-directory and report, deliberately follow the same structure for every module to enable the (repititive) usage of different modules within one project with multiple data sets (see next section for details).**
 
 <a name="projects"/>
 
 # Projects using multiple Modules (game changing superpower)
 --- COMING SOON ---
+When applied to multiple datasets within a research project, each dataset has their own result directory.
 
 # Recipes
 --- COMING SOON ---
@@ -121,6 +159,12 @@ The result directory and report follow deliberately always the same structure to
 <a name="sustainability"/>
 
 # Sustainability & Reproducibility
+
+each module has its own GitHub repository with releases (ie versions), connected to a Zenodo repository to ensure compatibility and citability
+
+has a prewritten Method section template in docs
+
+generates a report with ONE category "{project_name}\_{module_name}", and subcategory per data set/run/split containing all respective analysis steps
 
 <a name="tips"/>
 
@@ -133,26 +177,7 @@ command for a dry-run with option -n (-p makes Snakemake print the resulting she
 snakemake -p -n
 ```
 
-set Snakemake environment variables once
-**conda**
-pro tip: use a dedicated snakemake conda environment folder (e.g., on a non-backed up partition of your HPC) to avoid redundant installations and consolidate all conda environments installed by snakemake.
-Two options:
-(recommended) Set environmental variable (e.g., bash.rc) 
-```
-export SNAKEMAKE_CONDA_PREFIX=<path/to/conda/directory>
-```
 
-[Snakemake command line parameter:](https://snakemake.readthedocs.io/en/stable/executing/cli.html#CONDA)
-```
-snakemake --conda-prefix <path/to/conda/directory>
-```
-
-This does 2 things for us:
-
-1. fewer files on the backed-up partition (i.e., part of the ongoing series How to keep your Data Manager happy?)
-2. avoid reinstallation in project modules if you use multiple workflows as modules (relevant for advanced Snakemake users)
-
-**cluster profile**
 
  
 # Resources
@@ -169,11 +194,6 @@ the profile for CeMM's slurm environment is provided in the config/ directory, o
 - the number of jobs in the slurm.cemm/config.yaml should be set as high as necessary, because arrayed job subsmission does not work (yet) and the scheduler (eg SLURM) should take care of the priorization
 - jobs which dependencies can never be fulfilled are automatically removed from the queue
 
-# How to develop a MODULE?
---- COMING SOON ---
-
-# How to create a RECIPE?
---- COMING SOON ---
 
 ---
 ---
@@ -197,21 +217,7 @@ Use as module in another Snakemake workflow (soon)
 - [https://snakemake.readthedocs.io/en/stable/snakefiles/modularization.html#snakefiles-modules](https://snakemake.readthedocs.io/en/stable/snakefiles/modularization.html#snakefiles-modules)
 - [https://slides.com/johanneskoester/snakemake-6#/8](https://slides.com/johanneskoester/snakemake-6#/8)
 
-# Report
-command for report generation (this can take a few minutes, depending on the size of the dataset)
-```
-snakemake --report /absolute/path/to/report.zip
-```
 
-The command creates a self contained HTML based report in a zip archive containing the following sections:
-- Workflow: interactive rulegraph to recapitulate individual steps, used software and conrete code (reproducibility)
-- Statistics: duration and timing of individual steps
-- Configuration: used pipeline configuration (accountability)
-- Results
-    - Configuration: all 3 used configuration files (project, samples, metadata)
-    - QC reports: link to the MultiQC report
-    - all: each step of the downstream analysis has its own searchable section with step-specific and unsupervised analysis plots
-    - optional: one additional section per split, containing the respective downstream analysis results
 
 # Tips
 
