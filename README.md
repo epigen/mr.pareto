@@ -2,9 +2,8 @@
 Get 80% of all standard biomedical data science analyses done semi-automated with 20% of the effort, by leveraging [Snakemake's](https://snakemake.github.io/) module functionality to use and combine pre-existing workflows into arbitrarily complex analyses.
 
 # TL;DR - More Time for Science!
-- **Goal**: Get 80% of (standard) biomedical data science analyses done semi-automated with 20% of the effort.
-- **Why**: By taking care of efficiency (i.e., maximum output with limited resources) scientists can focus on effectivenes (i.e., the biggest impact possible).
-- **How**: Leverage the latest developments in workflow management to (re-)use and combine independent computational modules into arbitrarily complex analyses.
+- **Why**: Time is the most precious resource. By taking care of efficiency (i.e., maximum output with limited resources) scientists can re-distribute their time to focus on effectivenes (i.e., the biggest impact possible).
+- **How**: Leverage the latest developments in workflow management to (re-)use and combine independent computational modules into arbitrarily complex analyses in combination with modern innovation methods (e.g., fast protoyping, desing thinking and agile concepts).
 - **What**: Independent computational **Modules** implemented as Snakemake workflows, encoding best practices and standard approaches, are used to scale, automate and parallelize analyses. Snakemake's module function enables arbitrarily complex combinations of pre-exsiting modules for any **Project**. **Recipes** combine modules into the most conceivable standard analyses, thereby accelerating projects to the point of the unknown. Altogether this enables complex, portable, transparent, reproducible, documented analysis of biomedical data.
 
 # Table of contents
@@ -83,7 +82,7 @@ The following instructions should take less than 10 minutes to execute and hold 
      git clone git@github.com:user/{module}.git
       ```
 
-Note: All software dependencies are installed and managed automatically via Snakemake and conda. They are installed upon the first run of the module.
+**Note**: All software dependencies are installed and managed automatically via Snakemake and conda. They are installed upon the first run of the module.
 
 ## Configuration
 Configure your analysis
@@ -114,7 +113,7 @@ Run the `{module}` from within the Snakemake conda environment and the module's 
        snakemake --use-conda --profile path/to/clusterProfile
        ```
 
-Note: Snakemake cluster profiles are the interface between an OS-agnostic Snakemake workflow and the system it is executed on (e.g., SLURM HPC). If you are working on another cluster engine get your cluster execution profile here: [The Snakemake-Profiles project](https://github.com/snakemake-profiles/doc)
+**Note**: Snakemake cluster profiles are the interface between an OS-agnostic Snakemake workflow and the system it is executed on (e.g., SLURM HPC). If you are working on another cluster engine get your cluster execution profile here: [The Snakemake-Profiles project](https://github.com/snakemake-profiles/doc)
 
 These instructions (installation, configuration, execution) are also shown in the modules' respective [Snakmake workflow catalog entry](https://snakemake.github.io/snakemake-workflow-catalog).
 
@@ -151,13 +150,16 @@ The command creates a self-contained HTML based report in a ZIP archive with the
 
 **Both, the `{project}` result-directory and report, deliberately follow the same structure for every module to enable the (repititive) usage of different modules within one project with multiple data sets (see next section for details).**
 
+<a name="sustainability"/>
+
 ## Sustainability & Reproducibility
 To ensure sustainable development, implicit documentation and reproducibility each `{module}` has to fulfill the following requirements:
 - GitHub repository for development and version control
-    - name: descriptive (i.e., what it does and purpose e.g, dea_limma) and split by underscores '_'
+    - descriptive name (i.e., what it does and purpose e.g, dea_limma) and split by underscores '_'
     - repository structure according to [Snakemake's recommendation](https://snakemake.readthedocs.io/en/stable/snakefiles/deployment.html)
     - README according to the provided [template](README_template.md)
     - [releases](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) (i.e.,  versions) according to the [semantic versioning scheme](https://semver.org/)
+    - GitHub page displaying the README
 - Zenodo repository to ensure compatibility, citability and long-term archiving
     - via [automated GitHub hook](https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content) 
     - every GitHub release will trigger the creation of a new release in the Zenodo repository, and thereby a new DOI
@@ -165,11 +167,11 @@ To ensure sustainable development, implicit documentation and reproducibility ea
 - [Snakemake Workflow Catalog](https://snakemake.github.io/snakemake-workflow-catalog/) entry
    - increase visibility by fulfilling the requirements for [Standardized Usage](https://snakemake.github.io/snakemake-workflow-catalog/?rules=true)
 - Snakemake Report for implicit documentation and collaboration
-    - following the [above](#report) described structure
+    - following the [above](#report) described structure to enhance reproducibility (via export of used software and configuration) and ensure module compatibility
 - Result directory 
-    - following the [above](#results) described structure
+    - following the [above](#results) described structure to enhance reproducibility (via export of used software and configuration) and ensure module compatibility
 - Software Management with [conda](https://docs.conda.io/en/latest/) for reproducibilty
-- (COMING SOON) Containerization for OS-level virtualization
+- (COMING SOON) Containerization with Docker/Singularity for OS-level virtualization
     - final frontier to be explored and implemented across MR. PARETO modules.
 
 <a name="projects"/>
@@ -188,10 +190,6 @@ Use as module in another Snakemake workflow (soon)
 Recipes are templates for standard analyses and consist of default combinations of modules (e.g., bulk RNA-seq DEA or scCRISPR-seq analysis).
 
 --- COMING SOON ---
-
-<a name="sustainability"/>
-
-
 
 <a name="tips"/>
 
@@ -217,28 +215,21 @@ snakemake --dag --forceall | dot -Tsvg > workflow/dags/all_DAG.svg
 ```
 provided for both test examples in workflow/dags
 
-
- 
 # Resources
+- [GitHub list of MR. PARETO modules](https://github.com/stars/sreichl/lists/mr-pareto)
+- Curated and published workflows to be used as modules
+    - [Snakemake Workflow Catalog](https://snakemake.github.io/snakemake-workflow-catalog/)
+    - [SnakePipes](https://snakepipes.readthedocs.io/en/latest/index.html)
+    - [Seq2Science](https://vanheeringen-lab.github.io/seq2science/index.html)
+- Software
+    - [Snakemake](https://snakemake.readthedocs.io/en/stable/index.html)
+    - [Conda](https://docs.conda.io/en/latest/)
+    - [Docker](https://www.docker.com/)
+    - [Singularity](https://docs.sylabs.io/guides/3.5/user-guide/index.html#) 
+    
 
 <a name="cemm"/>
 
 # CeMM Users
 We created a Snakemake SLURM cluster profile for the HPC at [CeMM](https://cemm.at/). You can find the repository including documentation and instructions here [cemm.slurm.sm](https://github.com/epigen/cemm.slurm.sm)
----
----
 
-
-# FROM ATAC-seq pipeline to be adapted to fit all Pareto Modules
-
-
-
-## X. Singularity execution (not tested)
-Singularity has to be installed (system wide by root) and available/loaded (eg module load singularity).
-The pipeline automatically loads the correct singularity image from [Dockerhub](https://hub.docker.com/r/
-/atacseq_pipeline)
-
-command for execution with singularity, just add the flag --use-singularity and use --singularity-args to provide all the necessary directories the pipeline needs access to (in the example it is configured for the three relevant partitions at CeMM)
-```
-snakemake -p --use-conda --use-singularity --singularity-args "--bind /nobackup:/nobackup --bind /research:/research --bind /home:/home"
-```
