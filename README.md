@@ -193,23 +193,28 @@ Recipes are templates for standard analyses and consist of default combinations 
 
 # Tips
 Here are some tips for better understanding and troubleshooting that I found useful.
-- always use the flag `-p` that makes Snakemake print the resulting shell commands  that will be executed.
+- always use the flag `-p` that makes Snakemake print the resulting **shell commands** that will be executed.
     ```console
     snakemake -p
     ```
-- always perform first a dry run using the flag `-n`, to check if the configuration works and the workflow does what you intend it to do.
+- always perform first a **dry run** using the flag `-n`, to check if the configuration works and the workflow does what you intend it to do.
     ```console
     snakemake -p -n
     ```
-- if unsure why a certain rule will be executed use option `--reason` during the dry run, this will give the reason for the execution of each rule.
+- if unsure why a certain rule will be executed use option `--reason` during the dry run, this will give the **reason for the execution** of each rule.
     ```console
     snakemake -p -n --reason
     ```
-- in case a module crashes, you manually canceled your jobs or when Snakemake gets stuck trying to "resume.. resubmit.." jobs, then remove the `.snakemake/incomplete` directory.
-- command for generating the directed acyclic graph (DAG) of all jobs with current configuration for visual inspection (most often too large to inspect).
+- if you use a module in multuiple projects with **different configuration files** use the command line argument `--configfile` to overwrite values from the configfile statement. Important note from the [docs](https://snakemake.readthedocs.io/en/stable/snakefiles/configuration.html#configuration): Note that any values parsed into the config dictionary with any of above mechanisms are merged, i.e., all keys defined via a configfile statement, or the `--configfile` and `--config` command line arguments will end up in the final config dictionary, but if two methods define the same key, command line overwrites the configfile statement.
+    ```console
+    snakemake --configfile path/to/config.yaml
+    ```
+- in case a **module crashes**, you manually canceled your jobs or when Snakemake gets stuck trying to "resume.. resubmit.." jobs, then remove the `.snakemake/incomplete` directory.
+- command to **generate the directed acyclic graph (DAG)** of all jobs with current configuration for visual inspection (most often too large to inspect).
     ```console
     snakemake --dag --forceall | dot -Tsvg > workflow/dags/all_DAG.svg
     ```
+- Finally, if you want to **develop your own workflows/modules** start with the excellent [tutorial](https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html) from the documentation.
 
 # Resources
 - [GitHub list of MR. PARETO modules](https://github.com/stars/sreichl/lists/mr-pareto)
