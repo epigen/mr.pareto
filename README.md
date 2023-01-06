@@ -4,7 +4,9 @@ Get 80% of all standard biomedical data science analyses done semi-automated wit
 # TL;DR - More Time for Science!
 - **Why**: Time is the most precious resource. By taking care of efficiency (i.e., maximum output with limited resources) scientists can re-distribute their time to focus on effectivenes (i.e., the biggest impact possible).
 - **How**: Leverage the latest developments in workflow management to (re-)use and combine independent computational modules into arbitrarily complex analyses in combination with modern innovation methods (e.g., fast protoyping, design thinking and agile concepts).
-- **What**: Independent computational **Modules** implemented as Snakemake workflows, encoding best practices and standard approaches, are used to scale, automate and parallelize analyses. Snakemake's module function enables arbitrarily complex combinations of pre-exsiting modules for any **Project**. **Recipes** combine modules into the most conceivable standard analyses, thereby accelerating projects to the point of the unknown. Altogether this enables complex, portable, transparent, reproducible, documented analysis of biomedical data at scale.
+- **What**: Independent computational **Modules** implemented as Snakemake workflows, encoding best practices and standard approaches, are used to scale, automate and parallelize analyses. Snakemake's module function enables arbitrarily complex combinations of pre-exsiting modules for any **Project**. **Recipes** combine modules into the most conceivable standard analyses, thereby accelerating projects to the point of the unknown. 
+
+Altogether this enables complex, portable, transparent, reproducible, documented analysis of biomedical data at scale.
 
 # Table of contents
   * [Motivation](#motivation)
@@ -47,7 +49,7 @@ Three key observations at the end of 2021 motivated me to start this project.
 | [Unsupervised Analysis](https://github.com/epigen/unsupervised_analysis) | General Purpose |
 | [Differential Analysis with limma](https://github.com/epigen/dea_limma) | Bioinformatics |
 | [Enrichment Analysis](https://github.com/epigen/enrichment_analysis) | Bioinformatics |
-| [Genome Track Visualization](https://github.com/sreichl/genome_tracks) | Bioinformatics |
+| [Genome Track Visualization](https://github.com/epigen/genome_tracks) | Bioinformatics |
 | [ATAC-seq Processing](https://github.com/epigen/atacseq_pipeline) | Bioinformatics (ATAC-seq) |
 | [scRNA-seq Processing using Seurat](https://github.com/epigen/scrnaseq_processing_seurat) | Bioinformatics (sc/snRNA-seq) |
 | [Differential Analysis using Seurat](https://github.com/epigen/dea_seurat) | Bioinformatics (sc/snRNA-seq) |
@@ -219,6 +221,7 @@ Here are some tips for better understanding and troubleshooting that I found use
 # Resources
 - [GitHub list of MR. PARETO modules](https://github.com/stars/sreichl/lists/mr-pareto)
 - [My Data Science Setup - Tutorial](https://bit.ly/TAP-data-science-setup)
+- [GitHub Page of this repository](https://epigen.github.io/mr.pareto/)
 - Curated and published workflows that could be used as modules:
     - [Snakemake Workflow Catalog](https://snakemake.github.io/snakemake-workflow-catalog/)
     - [WorkflowHub](https://workflowhub.eu/)
