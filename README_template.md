@@ -72,7 +72,7 @@ Detailed specifications can be found here [./config/README.md](./config/README.m
 - [Snakemake Workflow Catalog Entry](https://snakemake.github.io/snakemake-workflow-catalog?usage=user/module)
 
 # Resources
-- Recommended downstream analysis modules
+- Recommended [MR.PARETO](https://github.com/epigen/mr.pareto) modules for downstream analyses:
     - ...
 - ...
 
