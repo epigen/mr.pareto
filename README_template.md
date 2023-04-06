@@ -1,7 +1,7 @@
 # Analysis & Visualization Snakemake Workflow Using/Powered by PACKAGE for DATA/MODALITY
 A [Snakemake](https://snakemake.readthedocs.io/en/stable/) workflow for performing and visualizing analyses of data (e.g., ...) powered by the package [package](https://www.packageURL.org).
 
-This workflow adheres to the module specifications of [MR. PARETO](https://github.com/epigen/mr.pareto), an effort to augment research by modularizing (biomedical) data science.
+This workflow adheres to the module specifications of [MR.PARETO](https://github.com/epigen/mr.pareto), an effort to augment research by modularizing (biomedical) data science.
 
 **If you use this workflow in a publication, don't forget to give credits to the authors by citing the URL of this (original) repository (and its DOI, see Zenodo badge above -> coming soon).**
 
@@ -21,7 +21,7 @@ Table of contents
   * [Publications](#publications)
 
 # Authors
-- [MR. PARETO](https://github.com/epigen/mr.pareto)
+- [MR.PARETO](https://github.com/epigen/mr.pareto)
 
 
 # Software
@@ -72,6 +72,8 @@ Detailed specifications can be found here [./config/README.md](./config/README.m
 - [Snakemake Workflow Catalog Entry](https://snakemake.github.io/snakemake-workflow-catalog?usage=user/module)
 
 # Resources
+- Recommended downstream analysis modules
+    - ...
 - ...
 
 # Publications
