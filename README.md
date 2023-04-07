@@ -66,6 +66,10 @@ The following instructions should take less than 10 minutes to execute and hold 
           conda activate base
           mamba create -c conda-forge -c bioconda -n snakemake snakemake
           ```
+          Most modules were developed and are tested with Snakemake version 7.15.2 (recommended)
+          ```console
+          mamba create -c conda-forge -c bioconda -n snakemake snakemake=7.15.2
+          ```
      2. set Snakemake environment variables for convenience (optional, but highly recommended)
          1. configure a **dedicated Snakemake conda environment folder** (e.g., on a non-backed up partition of your cluster) to avoid redundant installations and consolidate all conda environments installed by Snakemake in one easy to manage location.
              ```bash
