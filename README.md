@@ -44,7 +44,7 @@ Three key observations at the end of 2021 motivated me to start this project.
 
 **Modules** are Snakemake workflows, consisting of **Rules** for multi-step analyses, that are independent and self-contained. A `{module}` can be modality-specific (e.g., ATAC-seq processing) or general-purpose (e.g., Unsupervised Analysis). Currently, the following eight modules are available:
 
-| Module | Module Type (Data Modality) |
+| Module | Type (Data Modality) |
 | :---: | :---: |
 | [Unsupervised Analysis](https://github.com/epigen/unsupervised_analysis) | General Purpose |
 | [Differential Analysis with limma](https://github.com/epigen/dea_limma) | Bioinformatics |
