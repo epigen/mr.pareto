@@ -165,10 +165,15 @@ To ensure sustainable development, implicit documentation and reproducibility ea
         snakemake --rulegraph --forceall | dot -Tsvg > workflow/dags/rulegraph.svg
         ```
     - GitHub page displaying the README
+    - CITATION.cff file
+      - [CFF docs](https://citation-file-format.github.io/)
+      - [GitHub citation files](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files)
+      - [Generator](https://citation-file-format.github.io/cff-initializer-javascript/#/)
 - Zenodo repository to ensure compatibility, citability, and long-term archiving
     - via [automated GitHub hook](https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content) 
     - every GitHub release will trigger the creation of a new release in the Zenodo repository, and thereby a new DOI
-    - there is one permanent DOI that can be used to reference/cite all releases/versions of a given repository
+    - the Zenodo repository will be annotated using the provided information in the CITATION.cff file in your GitHub repository
+    - there is one permanent DOI that can be used to reference/cite all releases/versions of a given repository -> we recommend using this DOI and the release version for referencing e.g., in publications
 - [Snakemake Workflow Catalog](https://snakemake.github.io/snakemake-workflow-catalog/) entry
    - increase visibility by fulfilling the requirements for [Standardized Usage](https://snakemake.github.io/snakemake-workflow-catalog/?rules=true)
 - Snakemake Report for implicit documentation and collaboration
@@ -176,6 +181,7 @@ To ensure sustainable development, implicit documentation and reproducibility ea
 - Result directory 
     - following the [above](#results) described structure to enhance reproducibility (via export of used software and configuration) and ensure module compatibility
 - Software Management with [conda](https://docs.conda.io/en/latest/) for reproducibility
+  - specify the version of every entry in your conda environment specification files (`workflow/envs/*.yaml`)
 - (COMING SOON) Containerization with Docker/Singularity for OS-level virtualization
     - final frontier to be explored and implemented across MR. PARETO modules
     - automated containerization supported since Snakemake 6.0.0 (released 2021-02-26)
