@@ -2,11 +2,11 @@
 Get 80% of all standard biomedical data science analyses done semi-automated with 20% of the effort, by leveraging [Snakemake's](https://snakemake.github.io/) module functionality to use and combine pre-existing workflows into arbitrarily complex analyses.
 
 # TL;DR - More Time for Science!
-- **Why**: Time is the most precious resource. By taking care of efficiency (i.e., maximum output with limited resources) scientists can re-distribute their time to focus on effectivenes (i.e., the biggest impact possible).
-- **How**: Leverage the latest developments in workflow management to (re-)use and combine independent computational modules into arbitrarily complex analyses in combination with modern innovation methods (e.g., fast protoyping, design thinking and agile concepts).
-- **What**: Independent computational **Modules** implemented as Snakemake workflows, encoding best practices and standard approaches, are used to scale, automate and parallelize analyses. Snakemake's module function enables arbitrarily complex combinations of pre-exsiting modules for any **Project**. **Recipes** combine modules into the most conceivable standard analyses, thereby accelerating projects to the point of the unknown. 
+- **Why**: Time is the most precious resource. By taking care of efficiency (i.e., maximum output with limited resources) scientists can re-distribute their time to focus on effectiveness (i.e., the biggest impact possible).
+- **How**: Leverage the latest developments in workflow management to (re-)use and combine independent computational modules into arbitrarily complex analyses in combination with modern innovation methods (e.g., fast prototyping, design thinking, and agile concepts).
+- **What**: Independent computational **Modules** implemented as Snakemake workflows, encoding best practices and standard approaches, are used to scale, automate and parallelize analyses. Snakemake's module function enables arbitrarily complex combinations of pre-existing modules for any **Project**. **Recipes** combine modules into the most conceivable standard analyses, thereby accelerating projects to the point of the unknown. 
 
-Altogether this enables complex, portable, transparent, reproducible, documented analysis of biomedical data at scale.
+Altogether this enables complex, portable, transparent, reproducible, and documented analysis of biomedical data at scale.
 
 # Table of contents
   * [Motivation](#motivation)
@@ -30,19 +30,19 @@ Three key observations at the end of 2021 motivated me to start this project.
     * The balance between data generators and data analysts is getting worse and communication suffers.
     * There is no sustainable framework to preserve complex inventions and best practices.
     * Established innovation methods (e.g., design thinking, fast prototyping, agile concepts,...) can not be leveraged.
-  * Increasing number of fields of relevance and interest, but not more time.
+  * An increasing number of fields of relevance and interest, but not more time.
     * Staying current in one field is getting harder.
     * Getting into novel fields takes time and is risky.
     * Method development is very competitive and takes a lot of time, hence it requires determination and focus.
   * Reproducibility crisis and recent technological developments.
-    * Established analysis/approaches are often “reinvented”, leading to irreproducible results.
+    * Established analyses/approaches are often “reinvented”, leading to irreproducible results.
     * Recent developments in workflow management enable a mindset shift towards software engineering best practices.
     * Compounding effects of re-using established best practices become possible.
 
 # Modules
 > _"Is it functional, multifunctional, durable, well-fitted, simple, easy to maintain, and thoroughly tested? Does it provide added value, and doesn't cause unnecessary harm? Can it be simpler? Is it an innovation?"_ - Patagonia Design Principles
 
-**Modules** are Snakemake workflows, consisting of **Rules** for multi-step analyses, that are independent and self-contained. A `{module}` can be modality-specific (e.g., ATAC-seq processing) or general-purpose (e.g., Unsupervised Analysis). Currently, the following eight modules are available:
+**Modules** are Snakemake workflows, consisting of **Rules** for multi-step analyses, that are independent and self-contained. A `{module}` can be modality-specific (e.g., ATAC-seq processing) or general-purpose (e.g., Unsupervised Analysis). Currently, the following **nine modules** are available:
 
 | Module | Type (Data Modality) |
 | :---: | :---: |
@@ -67,17 +67,17 @@ The following instructions should take less than 10 minutes to execute and hold 
           conda activate base
           mamba create -c conda-forge -c bioconda -n snakemake snakemake
           ```
-          Most modules were developed and are tested with Snakemake version 7.15.2 (recommended)
+          Most modules were developed and tested with Snakemake version 7.15.2 (recommended)
           ```console
           mamba create -c conda-forge -c bioconda -n snakemake snakemake=7.15.2
           ```
      2. set Snakemake environment variables for convenience (optional, but highly recommended)
-         1. configure a **dedicated Snakemake conda environment folder** (e.g., on a non-backed up partition of your cluster) to avoid redundant installations and consolidate all conda environments installed by Snakemake in one easy to manage location.
+         1. configure a **dedicated Snakemake conda environment folder** (e.g., on a non-backed-up partition of your cluster) to avoid redundant installations and consolidate all conda environments installed by Snakemake in one easy-to-manage location.
              ```bash
              # put this in your .bashrc profile
              export SNAKEMAKE_CONDA_PREFIX = path/to/conda/directory
              ```
-         2. if you work on a cluster: configure location of your **cluster profile** (i.e., interface between Snakemake and your cluster's workload manager)
+         2. if you work on a cluster: configure the location of your **cluster profile** (i.e., the interface between Snakemake and your cluster's workload manager)
              ```bash
              # put this in your .bashrc profile
              export SNAKEMAKE_PROFILE = path/to/your/cluster/profile
@@ -113,9 +113,9 @@ Run the `{module}` from within the Snakemake conda environment and the module's 
        ```{console}
        snakemake --use-conda --cluster qsub --jobs 32
        ```
-    3. **configured cluster execution** by using --profile (not necessary if you set it as environment variable before)
+    3. **configured cluster execution** by using --profile (not necessary if you set it as an environment variable before)
        ```{console}
-       snakemake --use-conda --profile path/to/clusterProfile
+       snakemake --use-conda --profile path/to/cluster_profile
        ```
 
 **Note**: Snakemake cluster profiles are the interface between an OS-agnostic Snakemake workflow and the system it is executed on (e.g., SLURM HPC). If you are working on another cluster engine get your cluster execution profile here: [The Snakemake-Profiles project](https://github.com/snakemake-profiles/doc)
@@ -141,7 +141,7 @@ The files contained in the report are most of the time a subset of all results f
 snakemake --report /absolute/path/to/report.zip
 ```
 
-The command creates a self-contained HTML based report in a ZIP archive with the following sections:
+The command creates a self-contained HTML-based report in a ZIP archive with the following sections:
 - GENERAL (automatically filled by Snakemake)
     - Workflow: interactive rulegraph recapitulating individual steps, used software and concrete code of the `{module}`
     - Statistics: duration and timing of individual steps
@@ -149,9 +149,9 @@ The command creates a self-contained HTML based report in a ZIP archive with the
 - RESULT (module specific result section)
     - Configuration/`{project}_{module}/` (e.g., `Configuration/myProject_unsupervised_analysis/myProject_unsupervised_analyis_config.yaml`)
     - Software/`{project}_{module}/` (e.g., `Software/myProject_unsupervised_analysis/sklearn.yaml`)
-    - `{project}_{module}`: one top level **category**, and **subcategories** for subsets/analyses containing results of all respective analysis steps (e.g., `myProject_unsupervised_analysis`).
+    - `{project}_{module}`: one top-level **category**, and **subcategories** for subsets/analyses containing results of all respective analysis steps (e.g., `myProject_unsupervised_analysis`).
 
-**Both, the `{project}` result-directory and the report, deliberately follow the same structure for every module to enable the (repititive) usage of different modules within one project with multiple data sets (see [Projects](#projects-using-multiple-modules) section for details).**
+**Both, the `{project}` result-directory and the report, deliberately follow the same structure for every module to enable the (repetitive) usage of different modules within one project with multiple data sets (see [Projects](#projects-using-multiple-modules) section for details).**
 
 ## Sustainability & Reproducibility
 To ensure sustainable development, implicit documentation and reproducibility each `{module}` has to fulfill the following requirements:
@@ -165,7 +165,7 @@ To ensure sustainable development, implicit documentation and reproducibility ea
         snakemake --rulegraph --forceall | dot -Tsvg > workflow/dags/rulegraph.svg
         ```
     - GitHub page displaying the README
-- Zenodo repository to ensure compatibility, citability and long-term archiving
+- Zenodo repository to ensure compatibility, citability, and long-term archiving
     - via [automated GitHub hook](https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content) 
     - every GitHub release will trigger the creation of a new release in the Zenodo repository, and thereby a new DOI
     - there is one permanent DOI that can be used to reference/cite all releases/versions of a given repository
@@ -175,10 +175,10 @@ To ensure sustainable development, implicit documentation and reproducibility ea
     - following the [above](#report) described structure to enhance reproducibility (via export of used software and configuration) and ensure module compatibility
 - Result directory 
     - following the [above](#results) described structure to enhance reproducibility (via export of used software and configuration) and ensure module compatibility
-- Software Management with [conda](https://docs.conda.io/en/latest/) for reproducibilty
+- Software Management with [conda](https://docs.conda.io/en/latest/) for reproducibility
 - (COMING SOON) Containerization with Docker/Singularity for OS-level virtualization
     - final frontier to be explored and implemented across MR. PARETO modules
-    - automated containerization supported since Snakemake 6.0.0 (released in 2021-02-26)
+    - automated containerization supported since Snakemake 6.0.0 (released 2021-02-26)
 
 # Projects using multiple Modules
 
@@ -212,7 +212,7 @@ Here are some tips for better understanding and troubleshooting that I found use
     ```console
     snakemake -p -n --reason
     ```
-- if you use a module in multuiple projects with **different configuration files** use the command line argument `--configfile` to overwrite values from the configfile statement. Important note from the [docs](https://snakemake.readthedocs.io/en/stable/snakefiles/configuration.html#configuration): Note that any values parsed into the config dictionary with any of above mechanisms are merged, i.e., all keys defined via a configfile statement, or the `--configfile` and `--config` command line arguments will end up in the final config dictionary, but if two methods define the same key, command line overwrites the configfile statement.
+- if you use a module in multiple projects with **different configuration files** use the command line argument `--configfile` to overwrite values from the configfile statement. Important note from the [docs](https://snakemake.readthedocs.io/en/stable/snakefiles/configuration.html#configuration): Note that any values parsed into the config dictionary with any of above mechanisms are merged, i.e., all keys defined via a configfile statement, or the `--configfile` and `--config` command line arguments will end up in the final config dictionary, but if two methods define the same key, command line overwrites the configfile statement.
     ```console
     snakemake --configfile path/to/config.yaml
     ```
