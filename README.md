@@ -47,6 +47,7 @@ Three key observations at the end of 2021 motivated me to start this project.
 | Module | Type (Data Modality) |
 | :---: | :---: |
 | [Unsupervised Analysis](https://github.com/epigen/unsupervised_analysis) | General Purpose |
+| [Processing & Integration](https://github.com/epigen/splilterlize_integrate) | Bioinformatics |
 | [Differential Analysis with limma](https://github.com/epigen/dea_limma) | Bioinformatics |
 | [Enrichment Analysis](https://github.com/epigen/enrichment_analysis) | Bioinformatics |
 | [Genome Track Visualization](https://github.com/epigen/genome_tracks) | Bioinformatics |
