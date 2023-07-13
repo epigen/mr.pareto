@@ -134,6 +134,8 @@ Next to the expected `{module}` outputs (i.e., results), a complete conda export
   - `envs/{module}/` (e.g., `envs/unsupervised_analysis/sklearn.yaml`)
   - `configs/{module}/` (e.g., `configs/unsupervised_analysis/myProject_unsupervised_analyis_config.yaml`)
 
+It is recommended to make this part of the module by including a separate Snakemake rule [envs_export.smk](https://github.com/epigen/dea_limma/blob/4b31eaf3de1beb4199245084b48ee466955a4520/workflow/rules/envs_export.smk) to export environment specifications, configuration, and annotation files.
+
 ### Report
 The files contained in the report are most of the time a subset of all results focusing on visualizations.
 ```bash
@@ -165,17 +167,23 @@ To ensure sustainable development, implicit documentation and reproducibility ea
         snakemake --rulegraph --forceall | dot -Tsvg > workflow/dags/rulegraph.svg
         ```
     - GitHub page displaying the README
+    - LICENSE file (recommendation: MIT)
     - CITATION.cff file
       - [CFF docs](https://citation-file-format.github.io/)
       - [GitHub citation files](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files)
       - [Generator](https://citation-file-format.github.io/cff-initializer-javascript/#/)
+    - (optional, but recommended) add example data and configurations for other users as starting point
+    - (optional, but recommended) provide resources and/or external data sources (e.g., reference data) as links or, Zenodo or [Git Large File Storage](https://docs.github.com/en/repositories/working-with-files/managing-large-files)
 - Zenodo repository to ensure compatibility, citability, and long-term archiving
     - via [automated GitHub hook](https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content) 
     - every GitHub release will trigger the creation of a new release in the Zenodo repository, and thereby a new DOI
     - the Zenodo repository will be annotated using the provided information in the CITATION.cff file in your GitHub repository
     - there is one permanent DOI that can be used to reference/cite all releases/versions of a given repository -> we recommend using this DOI and the release version for referencing e.g., in publications
+    - add the dynamic DOI badge to the GitHub repository
+    - add the permanent project DOI to the README in the introduction, in the methods, at the bottom (Zenodo link), and add it to the CITATION.cff.
 - [Snakemake Workflow Catalog](https://snakemake.github.io/snakemake-workflow-catalog/) entry
    - increase visibility by fulfilling the requirements for [Standardized Usage](https://snakemake.github.io/snakemake-workflow-catalog/?rules=true)
+   - every GitHub release will trigger the entry to be updated
 - Snakemake Report for implicit documentation and collaboration
     - following the [above](#report) described structure to enhance reproducibility (via export of used software and configuration) and ensure module compatibility
 - Result directory 
