@@ -1,4 +1,6 @@
 # MR. PARETO - Modules & Recipes for Pragmatic Augmentation of Research Efficiency Towards Optimum
+> _"For many outcomes, roughly 80% of consequences come from 20% of causes (the "vital few")."_ - The Pareto Principle by Vilfredo Pareto (1906)
+
 Get 80% of all standard biomedical data science analyses done semi-automated with 20% of the effort, by leveraging [Snakemake's](https://snakemake.github.io/) module functionality to use and combine pre-existing workflows into arbitrarily complex analyses.
 
 # TL;DR - More Time for Science!
@@ -23,7 +25,7 @@ Altogether this enables complex, portable, transparent, reproducible, and docume
   * [CeMM Users](#cemm-users)
 
 # Motivation
-> _"Programming is about trying to make the future less painful. It’s about making things easier for our teammates._" from _The Pragmatic Programmer_ by Andy Hunt & Dave Thomas 
+> _"Programming is about trying to make the future less painful. It’s about making things easier for our teammates."_ from _The Pragmatic Programmer_ by Andy Hunt & Dave Thomas
 
 Three key observations at the end of 2021 motivated me to start this project.
   * Increased demand, but limited resources.
@@ -195,8 +197,7 @@ To ensure sustainable development, implicit documentation and reproducibility ea
     - automated containerization supported since Snakemake 6.0.0 (released 2021-02-26)
 
 # Projects using multiple Modules
-
-> _"The Pareto principle states that for many outcomes, roughly 80% of consequences come from 20% of causes (the "vital few")."_
+> _“Absorb what is useful. Discard what is not. Add what is uniquely your own.”_ - Bruce Lee
 
 The combination of multiple modules into projects represents the overarching vision of MR. PARETO, but are currently for experienced Snakemake users only. When applied to multiple datasets within a research project, each dataset should have their own result directory within a project directory.
 
@@ -208,6 +209,8 @@ Here are links to the documentation on how to use a module in another Snakemake 
 --- MORE DETAILS COMING SOON ---
 
 # Recipes
+> _"Civilization advances by extending the number of important operations which we can perform without thinking of them."_ - Alfred North Whitehead, author of _Principia Mathematica_
+
 Recipes are templates for standard analyses and consist of default combinations of modules (e.g., bulk RNA-seq DEA or scCRISPR-seq analysis).
 
 --- COMING SOON ---
