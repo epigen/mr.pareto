@@ -46,17 +46,17 @@ Three key observations at the end of 2021 motivated me to start this project.
 
 **Modules** are Snakemake workflows, consisting of **Rules** for multi-step analyses, that are independent and self-contained. A `{module}` can be modality-specific (e.g., ATAC-seq processing) or general-purpose (e.g., Unsupervised Analysis). Currently, the following **nine modules** are available:
 
-| Module | Type (Data Modality) |
-| :---: | :---: |
-| [Unsupervised Analysis](https://github.com/epigen/unsupervised_analysis) | General Purpose |
-| [Processing & Integration](https://github.com/epigen/spilterlize_integrate) | Bioinformatics |
-| [Differential Analysis with limma](https://github.com/epigen/dea_limma) | Bioinformatics |
-| [Enrichment Analysis](https://github.com/epigen/enrichment_analysis) | Bioinformatics |
-| [Genome Track Visualization](https://github.com/epigen/genome_tracks) | Bioinformatics |
-| [ATAC-seq Processing](https://github.com/epigen/atacseq_pipeline) | Bioinformatics (ATAC-seq) |
-| [scRNA-seq Processing using Seurat](https://github.com/epigen/scrnaseq_processing_seurat) | Bioinformatics (sc/snRNA-seq) |
-| [Differential Analysis using Seurat](https://github.com/epigen/dea_seurat) | Bioinformatics (sc/snRNA-seq) |
-| [Perturbation Analysis using Mixscape from Seurat](https://github.com/epigen/mixscape_seurat) | Bioinformatics (sc/snRNA-seq) |
+| Module | Type (Data Modality) | DOI |
+| :---: | :---: | :---: |
+| [Unsupervised Analysis](https://github.com/epigen/unsupervised_analysis) | General Purpose |  |
+| [Processing & Integration](https://github.com/epigen/spilterlize_integrate) | Bioinformatics | [10.5281/zenodo.8144219](https://doi.org/10.5281/zenodo.8144219) |
+| [Differential Analysis with limma](https://github.com/epigen/dea_limma) | Bioinformatics | [10.5281/zenodo.7808516](https://doi.org/10.5281/zenodo.7808516) |
+| [Enrichment Analysis](https://github.com/epigen/enrichment_analysis) | Bioinformatics | [10.5281/zenodo.7810621](https://doi.org/10.5281/zenodo.7810621) |
+| [Genome Track Visualization](https://github.com/epigen/genome_tracks) | Bioinformatics |  |
+| [ATAC-seq Processing](https://github.com/epigen/atacseq_pipeline) | Bioinformatics (ATAC-seq) | [10.5281/zenodo.6323634](https://doi.org/10.5281/zenodo.6323634). |
+| [scRNA-seq Processing using Seurat](https://github.com/epigen/scrnaseq_processing_seurat) | Bioinformatics (sc/snRNA-seq) |  |
+| [Differential Analysis using Seurat](https://github.com/epigen/dea_seurat) | Bioinformatics (sc/snRNA-seq) |  |
+| [Perturbation Analysis using Mixscape from Seurat](https://github.com/epigen/mixscape_seurat) | Bioinformatics (sc/snRNA-seq) |  |
 
 
 ## Installation
