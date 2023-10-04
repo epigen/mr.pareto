@@ -48,7 +48,7 @@ Three key observations at the end of 2021 motivated me to start this project.
 
 | Module | Type (Data Modality) | DOI |
 | :---: | :---: | :---: |
-| [Unsupervised Analysis](https://github.com/epigen/unsupervised_analysis) | General Purpose |  |
+| [Unsupervised Analysis](https://github.com/epigen/unsupervised_analysis) | General Purpose | [10.5281/zenodo.8405360](https://doi.org/10.5281/zenodo.8405360) |
 | [Processing & Integration](https://github.com/epigen/spilterlize_integrate) | Bioinformatics | [10.5281/zenodo.8144219](https://doi.org/10.5281/zenodo.8144219) |
 | [Differential Analysis with limma](https://github.com/epigen/dea_limma) | Bioinformatics | [10.5281/zenodo.7808516](https://doi.org/10.5281/zenodo.7808516) |
 | [Enrichment Analysis](https://github.com/epigen/enrichment_analysis) | Bioinformatics | [10.5281/zenodo.7810621](https://doi.org/10.5281/zenodo.7810621) |
