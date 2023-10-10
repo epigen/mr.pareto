@@ -56,7 +56,7 @@ Three key observations at the end of 2021 motivated me to start this project.
 | [ATAC-seq Processing](https://github.com/epigen/atacseq_pipeline) | Bioinformatics (ATAC-seq) | [10.5281/zenodo.6323634](https://doi.org/10.5281/zenodo.6323634). |
 | [scRNA-seq Processing using Seurat](https://github.com/epigen/scrnaseq_processing_seurat) | Bioinformatics (sc/snRNA-seq) |  |
 | [Differential Analysis using Seurat](https://github.com/epigen/dea_seurat) | Bioinformatics (sc/snRNA-seq) |  |
-| [Perturbation Analysis using Mixscape from Seurat](https://github.com/epigen/mixscape_seurat) | Bioinformatics (sc/snRNA-seq) |  |
+| [Perturbation Analysis using Mixscape from Seurat](https://github.com/epigen/mixscape_seurat) | Bioinformatics (sc/snRNA-seq) | [10.5281/zenodo.8424761](https://doi.org/10.5281/zenodo.8424761) |
 
 
 ## Installation
