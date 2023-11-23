@@ -136,7 +136,7 @@ Next to the expected `{module}` outputs (i.e., results), a complete conda export
   - `envs/{module}/` (e.g., `envs/unsupervised_analysis/sklearn.yaml`)
   - `configs/{module}/` (e.g., `configs/unsupervised_analysis/myProject_unsupervised_analyis_config.yaml`)
 
-It is recommended to make this part of the module by including a separate Snakemake rule [envs_export.smk](https://github.com/epigen/dea_limma/blob/4b31eaf3de1beb4199245084b48ee466955a4520/workflow/rules/envs_export.smk) to export environment specifications, configuration, and annotation files.
+It is recommended to make this part of the module by including [a separate Snakemake rule](https://gist.github.com/sreichl/c6bda9e4193329ead05e5f2a39b22709) to export environment specifications, configuration, and annotation files.
 
 ### Report
 The files contained in the report are most of the time a subset of all results focusing on visualizations.
