@@ -238,6 +238,10 @@ Here are some tips for better understanding and troubleshooting that I found use
     ```console
     snakemake --dag --forceall | dot -Tsvg > workflow/dags/all_DAG.svg
     ```
+- in case of errors during installations, make dure your conda channel priorities are set to "strict"
+    ```console
+    conda config --set channel_priority strict
+    ```
 - Finally, if you want to **develop your own workflows/modules** start with the excellent [tutorial](https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html) from the documentation.
 
 # Resources
