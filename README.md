@@ -46,17 +46,17 @@ Three key observations at the end of 2021 motivated me to start this project.
 
 **Modules** are Snakemake workflows, consisting of **Rules** for multi-step analyses, that are independent and self-contained. A `{module}` can be modality-specific (e.g., ATAC-seq processing) or general-purpose (e.g., Unsupervised Analysis). Currently, the following **nine modules** are available:
 
-| Module | Type (Data Modality) | DOI |
-| :---: | :---: | :---: |
-| [Unsupervised Analysis](https://github.com/epigen/unsupervised_analysis) | General Purpose | [10.5281/zenodo.8405360](https://doi.org/10.5281/zenodo.8405360) |
-| [Processing & Integration](https://github.com/epigen/spilterlize_integrate) | Bioinformatics | [10.5281/zenodo.8144219](https://doi.org/10.5281/zenodo.8144219) |
-| [Differential Analysis with limma](https://github.com/epigen/dea_limma) | Bioinformatics | [10.5281/zenodo.7808516](https://doi.org/10.5281/zenodo.7808516) |
-| [Enrichment Analysis](https://github.com/epigen/enrichment_analysis) | Bioinformatics | [10.5281/zenodo.7810621](https://doi.org/10.5281/zenodo.7810621) |
-| [Genome Track Visualization](https://github.com/epigen/genome_tracks) | Bioinformatics |  |
-| [ATAC-seq Processing](https://github.com/epigen/atacseq_pipeline) | Bioinformatics (ATAC-seq) | [10.5281/zenodo.6323634](https://doi.org/10.5281/zenodo.6323634). |
-| [scRNA-seq Processing using Seurat](https://github.com/epigen/scrnaseq_processing_seurat) | Bioinformatics (sc/snRNA-seq) |  |
-| [Differential Analysis using Seurat](https://github.com/epigen/dea_seurat) | Bioinformatics (sc/snRNA-seq) |  |
-| [Perturbation Analysis using Mixscape from Seurat](https://github.com/epigen/mixscape_seurat) | Bioinformatics (sc/snRNA-seq) | [10.5281/zenodo.8424761](https://doi.org/10.5281/zenodo.8424761) |
+| Module | Type (Data Modality) | DOI | Stars |
+| :---: | :---: | :---: | :---: |
+| [Unsupervised Analysis](https://github.com/epigen/unsupervised_analysis) | General Purpose | [![DOI](https://zenodo.org/badge/475465311.svg)](https://zenodo.org/badge/latestdoi/475465311) | <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/epigen/unsupervised_analysis?style=plastic"> |
+| [Processing & Integration](https://github.com/epigen/spilterlize_integrate) | Bioinformatics | [![DOI](https://zenodo.org/badge/659800258.svg)](https://zenodo.org/badge/latestdoi/659800258) | <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/epigen/spilterlize_integrate?style=plastic"> |
+| [Differential Analysis with limma](https://github.com/epigen/dea_limma) | Bioinformatics | [![DOI](https://zenodo.org/badge/524038188.svg)](https://zenodo.org/badge/latestdoi/524038188) | <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/epigen/dea_limma?style=plastic">
+| [Enrichment Analysis](https://github.com/epigen/enrichment_analysis) | Bioinformatics | [![DOI](https://zenodo.org/badge/377527671.svg)](https://zenodo.org/badge/latestdoi/377527671) | <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/epigen/enrichment_analysis?style=plastic"> |
+| [Genome Track Visualization](https://github.com/epigen/genome_tracks) | Bioinformatics |  | <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/epigen/genome_tracks?style=plastic"> |
+| [ATAC-seq Processing](https://github.com/epigen/atacseq_pipeline) | Bioinformatics (ATAC-seq) | [![DOI](https://zenodo.org/badge/350342694.svg)](https://zenodo.org/doi/10.5281/zenodo.6323634) | <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/epigen/atacseq_pipeline?style=plastic"> |
+| [scRNA-seq Processing using Seurat](https://github.com/epigen/scrnaseq_processing_seurat) | Bioinformatics (sc/snRNA-seq) |  | <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/epigen/scrnaseq_processing_seurat?style=plastic"> |
+| [Differential Analysis using Seurat](https://github.com/epigen/dea_seurat) | Bioinformatics (sc/snRNA-seq) |  | <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/epigen/dea_seurat?style=plastic"> |
+| [Perturbation Analysis using Mixscape from Seurat](https://github.com/epigen/mixscape_seurat) | Bioinformatics (sc/snRNA-seq) | [![DOI](https://zenodo.org/badge/481635018.svg)](https://zenodo.org/badge/latestdoi/481635018) | <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/epigen/mixscape_seurat?style=plastic"> |
 
 
 ## Installation
