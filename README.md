@@ -195,6 +195,7 @@ To ensure sustainable development, implicit documentation and reproducibility ea
 - (COMING SOON) Containerization with Docker/Singularity for OS-level virtualization
     - final frontier to be explored and implemented across MR. PARETO modules
     - automated containerization supported since Snakemake 6.0.0 (released 2021-02-26)
+- Finally, add the `{module}` to the summary table with all modules in this repository's README under [Modules](#modules).
 
 # Projects using multiple Modules
 > _“Absorb what is useful. Discard what is not. Add what is uniquely your own.”_ - Bruce Lee
