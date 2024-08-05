@@ -25,12 +25,12 @@ Table of contents
 
 
 # Software
-This project wouldn't be possible without the following software and their dependencies:
+This project is designed to run on top of the [Snakemake workflow management system](https://snakemake.readthedocs.io/en/stable/) and has been tested against the Snakemake version listed in the table below. In addition this project depends on, and is made possible by, the following Software:
 
-| Software | Reference (DOI) |
-| :---: | :---: |
-| packageA | https://doi.org/10.AAAA/ |
-| packageB | https://doi.org/10.BBBB/ |
+| Software | Version | Reference (DOI) |
+| :---: | :---: | :---: |
+| Snakemake | X.X.X | [https://doi.org/10.AAAA/](https://doi.org/10.12688/f1000research.29032.1) |
+| packageB | | https://doi.org/10.BBBB/ |
 
 
 # Methods
