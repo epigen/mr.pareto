@@ -1,7 +1,7 @@
 # Analysis & Visualization Snakemake Workflow Using/Powered by PACKAGE for DATA/MODALITY
 A [Snakemake](https://snakemake.readthedocs.io/en/stable/) workflow for performing and visualizing analyses of data (e.g., ...) powered by the package [package](https://www.packageURL.org).
 
-This workflow adheres to the module specifications of [MR.PARETO](https://github.com/epigen/mr.pareto), an effort to augment research by modularizing (biomedical) data science. For more details, instructions, and modules check out the project's repository. Please consider starring and sharing modules that are interesting or useful to you, this helps me prioritize my efforts!
+This workflow adheres to the module specifications of [MR.PARETO](https://github.com/epigen/mr.pareto), an effort to augment research by modularizing (biomedical) data science. For more details, instructions, and modules check out the project's repository. Please consider **starring** and sharing modules that are interesting or useful to you, this helps others find and benefit from my work and me to prioritize my efforts!
 
 **If you use this workflow in a publication, don't forget to give credits to the authors by citing the URL of this (original) repository (and its DOI, see Zenodo badge above -> coming soon).**
 
@@ -29,8 +29,9 @@ This project is designed to run on top of the [Snakemake workflow management sys
 
 | Software | Version | Reference (DOI) |
 | :---: | :---: | :---: |
-| Snakemake | X.X.X | [https://doi.org/10.AAAA/](https://doi.org/10.12688/f1000research.29032.1) |
-| packageB | | https://doi.org/10.BBBB/ |
+| Snakemake | X.X.X | https://doi.org/10.12688/f1000research.29032.2 |
+| packageA | X.X.X | https://doi.org/10.AAA/ |
+| packageB | X.X.X | https://doi.org/10.BBBB/ |
 
 
 # Methods
