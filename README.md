@@ -212,9 +212,15 @@ Here are links to the documentation on how to use a module in another Snakemake 
 # Recipes
 > _"Civilization advances by extending the number of important operations which we can perform without thinking of them."_ - Alfred North Whitehead, author of _Principia Mathematica_
 
-Recipes are templates for standard analyses and consist of default combinations of modules (e.g., bulk RNA-seq DEA or scCRISPR-seq analysis).
+**Recipes** are combinations of existing [Modules](#modules) into best practice analyses. They can be used as templates for standard analyses by leveraging existing modules, thereby enabling fast iterations and progression to the unknown. Every recipe is described using a wiki page and presented using a public data set.
 
---- COMING SOON ---
+| Recipe | Description | # Modules | Results |
+| :---: | :---: | :---: | :---: |
+| [ATAC-seq Analysis](../../wiki/ATAC‐seq-Analysis-Recipe) | From rAw BAMs to DEA enrichemntZ | 6(-7) | ... |
+| [RNA-seq Analysis](../../wiki/RNA‐seq-Analysis-Recipe) | From rAw BAMs to DEA enrichemntZ | 6(-7) | ... |
+| [Integrative RNA-seq & ATAC-seq Analysis](../../wiki/Integrative-Analysis-Recipe) | From count mAtrices to epigenetic potentialZ | 5 | ... |
+| [scRNA-seq Analysis](../../wiki/scRNA‐seq-Analysis-Recipe) | From count mAtrix to DEA enrichemntZ | 5(-6) | ... |
+| [scCRISPR-seq Analysis](../../wiki/scCRISPR‐seq-Analysis-Recipe) | From count mAtrix to KO phenotype enrichemntZ | 6(-7) | ... |
 
 # Tips
 Here are some tips for better understanding and troubleshooting that I found useful.
