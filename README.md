@@ -200,44 +200,29 @@ To ensure sustainable development, implicit documentation and reproducibility ea
 # Projects using multiple Modules
 > _“Absorb what is useful. Discard what is not. Add what is uniquely your own.”_ - Bruce Lee
 
-The combination of multiple modules into projects that analyze mutliple datasets represents the overarching vision and power of MR.PARETO, but are currently for experienced Snakemake users only. When applied to multiple datasets within a research project, each dataset should have their own result directory within a project directory.
+The combination of multiple modules into projects that analyze multiple datasets represents the overarching vision and power of MR.PARETO. When applied to multiple datasets within a research project, each dataset should have its own result directory within a project directory.
 
 Three components are required to use a module within your Snakemake workflow (i.e., project):
 - Configuration: The [`config/config.yaml`](./config/config.yaml) file has to point to the respective configuration files per dataset and workflow.
   
-    In the example, we want to use the [`unsupervised_analysis` module](https://github.com/epigen/unsupervised_analysis) on `MyProject`. Therefore, we first provide the respective configuration file using the predefined structure.
-    
-    ```yaml
-    #### Datasets and Workflows to include ###
-    workflows:
-        MyData:
-            unsupervised_analysis: "config/MyData/MyData_unsupervised_analysis_config.yaml"
-    ```
-- Snakefile: Within the main Snakefile ([workflow/Snakefile](.workflow/Snakefile)) we have to do three things
+    In the example, we want to use the [`unsupervised_analysis` module](https://github.com/epigen/unsupervised_analysis) on `MyData`. Therefore, we first provide the respective configuration file using the predefined structure.
+    https://github.com/epigen/mr.pareto/blob/ffa00e74f1227f5c4f526e2a84fdc832c18ad720/config/config.yaml#L12-L15
+- Snakefile: Within the main Snakefile ([`workflow/Snakefile`](.workflow/Snakefile)) we have to do three things
     - load and parse all configurations into a structured dictionary.
-    - include all snakfiles from the rule subfolder.
-    - require all outputs from the used modules as inputs to the target rule `all`.  
+      https://github.com/epigen/mr.pareto/blob/ffa00e74f1227f5c4f526e2a84fdc832c18ad720/workflow/Snakefile#L19-L28
+    - include the `MyData` analysis snakfile from the rule subfolder (see below).
+      https://github.com/epigen/mr.pareto/blob/ffa00e74f1227f5c4f526e2a84fdc832c18ad720/workflow/Snakefile#L31-L32
+    - require all outputs from the used module as inputs to the target rule `all`.
+      https://github.com/epigen/mr.pareto/blob/ffa00e74f1227f5c4f526e2a84fdc832c18ad720/workflow/Snakefile#L35-L40
 - Modules: Load the required module and its rules within separate snakefiles (.smk) in the rule folder. Recommendation: Use one snakefile (.smk) per dataset.
     
     In the dedicated snakefile for the analysis of `MyData`, [`workflow/rules/MyData.smk`](./workflow/rules/MyData.smk) we load the specified version of the [`unsupervised_analysis` module](https://github.com/epigen/unsupervised_analysis) directly from GitHub, provide it with the previously loaded configuration and use as a prefix for all loaded rules. Recommendation: `{data_name}_{module_name}_`.
-    
-    ```python
-    ### MyData - Unsupervised Analysis ####
-    module MyData_unsupervised_analysis:
-        snakefile:
-            github("epigen/unsupervised_analysis", path="workflow/Snakefile", tag="v2.0.0")
-        config:
-            config_wf["MyData_unsupervised_analysis"]
+    https://github.com/epigen/mr.pareto/blob/ffa00e74f1227f5c4f526e2a84fdc832c18ad720/workflow/rules/MyData.smk#L1-L10
 
-    use rule * from MyData_unsupervised_analysis as MyData_unsupervised_analysis_*
-    ```
-
-
-Here are links to the documentation on how to use a module in another Snakemake workflow:
+Here are links to the documentation on how to (re-)use modules in your Snakemake workflow:
 - [Introduction to the Module system with Snakemake 6.0.0 released 2021-02-26](https://slides.com/johanneskoester/snakemake-6#/8)
 - [Snakemake - Modules](https://snakemake.readthedocs.io/en/stable/snakefiles/modularization.html#snakefiles-modules)
 - [Snakemake - Using and combining pre-exising workflows](https://snakemake.readthedocs.io/en/stable/snakefiles/deployment.html#using-and-combining-pre-exising-workflows)
-
 
 # Recipes
 > _"Civilization advances by extending the number of important operations which we can perform without thinking of them."_ - Alfred North Whitehead, author of _Principia Mathematica_
@@ -268,7 +253,7 @@ Here are some tips for better understanding and troubleshooting that I found use
     ```console
     snakemake -p -n --reason
     ```
-- if you use a module in multiple projects with **different configuration files** use the command line argument `--configfile` to overwrite values from the configfile statement. Important note from the [docs](https://snakemake.readthedocs.io/en/stable/snakefiles/configuration.html#configuration): Note that any values parsed into the config dictionary with any of above mechanisms are merged, i.e., all keys defined via a configfile statement, or the `--configfile` and `--config` command line arguments will end up in the final config dictionary, but if two methods define the same key, command line overwrites the configfile statement.
+- if you use a module in multiple projects with **different configuration files** use the command line argument `--configfile` to overwrite values from the configfile statement. Important note from the [docs](https://snakemake.readthedocs.io/en/stable/snakefiles/configuration.html#configuration): Note that any values parsed into the config dictionary with any of the above mechanisms are merged, i.e., all keys defined via a configfile statement, or the `--configfile` and `--config` command line arguments will end up in the final config dictionary, but if two methods define the same key, command line overwrites the configfile statement.
     ```console
     snakemake --configfile path/to/config.yaml
     ```
