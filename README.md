@@ -200,12 +200,12 @@ To ensure sustainable development, implicit documentation and reproducibility ea
 # Projects using multiple Modules
 > _“Absorb what is useful. Discard what is not. Add what is uniquely your own.”_ - Bruce Lee
 
-The combination of multiple modules into projects that analyze multiple datasets represents the overarching vision and power of MR.PARETO. When applied to multiple datasets within a research project, each dataset should have its own result directory within a project directory.
+The combination of multiple modules into projects that analyze multiple datasets represents the overarching vision and power of MR.PARETO. When applied to multiple datasets within a research project, each dataset should have its own result directory within a project directory. As a concrete example we will apply the [`unsupervised_analysis` module](https://github.com/epigen/unsupervised_analysis) on `MyData` stored on [data/MyData](./data/MyData). A full [tutorial](../../wiki/Module-Usage-in-Projects) is available on the wiki.
 
-Three components are required to use a module within your Snakemake workflow (i.e., project):
+Three components are required to use a module within your Snakemake workflow (i.e., a project).
 - Configuration: The [`config/config.yaml`](./config/config.yaml) file has to point to the respective configuration files per dataset and workflow.
   
-    In the example, we want to use the [`unsupervised_analysis` module](https://github.com/epigen/unsupervised_analysis) on `MyData`. Therefore, we first provide the respective configuration file using the predefined structure.
+    Therefore, we First, we provide the respective configuration file using the predefined structure.
     https://github.com/epigen/mr.pareto/blob/ffa00e74f1227f5c4f526e2a84fdc832c18ad720/config/config.yaml#L12-L15
 - Snakefile: Within the main Snakefile ([`workflow/Snakefile`](.workflow/Snakefile)) we have to do three things
     - load and parse all configurations into a structured dictionary.
