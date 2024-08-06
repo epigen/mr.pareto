@@ -9,10 +9,10 @@ threads: 2
 ##### GENERAL #####
 project_name: "MR.PARETO"
 
-#### Workflows and datasets to include ###
+#### Datasets and Workflows to include ###
 workflows:
-    MyProject:
-        unsupervised_analysis: "config/MyProject/MyProject_unsupervised_analysis_config.yaml"
+    MyData:
+        unsupervised_analysis: "config/MyData/MyData_unsupervised_analysis_config.yaml"
     RNAseq:
 #         ngs_fetch: "config/RNAseq/RNAseq_ngs_fetch_config.yaml"
         rnaseq_pipeline: "config/RNAseq/RNAseq_rnaseq_pipeline_config.yaml"

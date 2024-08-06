@@ -1,4 +1,4 @@
-# MR. PARETO - Modules & Recipes for Pragmatic Augmentation of Research Efficiency Towards Optimum
+# MR.PARETO - Modules & Recipes for Pragmatic Augmentation of Research Efficiency Towards Optimum
 > _"For many outcomes, roughly 80% of consequences come from 20% of causes (the "vital few")."_ - The Pareto Principle by Vilfredo Pareto (1906)
 
 Get 80% of all standard biomedical data science analyses done semi-automated with 20% of the effort, by leveraging [Snakemake's](https://snakemake.github.io/) module functionality to use and combine pre-existing workflows into arbitrarily complex analyses.
@@ -60,7 +60,7 @@ Three key observations at the end of 2021 motivated me to start this project.
 
 
 ## Installation
-The following instructions should take less than 10 minutes to execute and hold true for any Snakemake workflow, including all MR. PARETO modules.
+The following instructions should take less than 10 minutes to execute and hold true for any Snakemake workflow, including all MR.PARETO modules.
 
   1. Install and setup [Snakemake](https://snakemake.readthedocs.io/en/stable/) (only once)
       1. install Snakemake, which requires [conda](https://docs.conda.io/en/latest/) and [mamba](https://mamba.readthedocs.io/en/latest/), following the offical [documentation](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html) (the full installation is recommended). 
@@ -193,26 +193,58 @@ To ensure sustainable development, implicit documentation and reproducibility ea
 - Software Management with [conda](https://docs.conda.io/en/latest/) for reproducibility
   - specify the version of every entry in your conda environment specification files (`workflow/envs/*.yaml`)
 - (COMING SOON) Containerization with Docker/Singularity for OS-level virtualization
-    - final frontier to be explored and implemented across MR. PARETO modules
+    - final frontier to be explored and implemented across MR.PARETO modules
     - automated containerization supported since Snakemake 6.0.0 (released 2021-02-26)
 - Finally, add the `{module}` to the summary table with all modules in this repository's README under [Modules](#modules).
 
 # Projects using multiple Modules
 > _“Absorb what is useful. Discard what is not. Add what is uniquely your own.”_ - Bruce Lee
 
-The combination of multiple modules into projects represents the overarching vision of MR. PARETO, but are currently for experienced Snakemake users only. When applied to multiple datasets within a research project, each dataset should have their own result directory within a project directory.
+The combination of multiple modules into projects that analyze mutliple datasets represents the overarching vision and power of MR.PARETO, but are currently for experienced Snakemake users only. When applied to multiple datasets within a research project, each dataset should have their own result directory within a project directory.
+
+Three components are required to use a module within your Snakemake workflow (i.e., project):
+- Configuration: The [`config/config.yaml`](./config/config.yaml) file has to point to the respective configuration files per dataset and workflow.
+  
+    In the example, we want to use the [`unsupervised_analysis` module](https://github.com/epigen/unsupervised_analysis) on `MyProject`. Therefore, we first provide the respective configuration file using the predefined structure.
+    
+    ```yaml
+    #### Datasets and Workflows to include ###
+    workflows:
+        MyData:
+            unsupervised_analysis: "config/MyData/MyData_unsupervised_analysis_config.yaml"
+    ```
+- Snakefile: Within the main Snakefile ([workflow/Snakefile](.workflow/Snakefile)) we have to do three things
+    - load and parse all configurations into a structured dictionary.
+    - include all snakfiles from the rule subfolder.
+    - require all outputs from the used modules as inputs to the target rule `all`.  
+- Modules: Load the required module and its rules within separate snakefiles (.smk) in the rule folder. Recommendation: Use one snakefile (.smk) per dataset.
+    
+    In the dedicated snakefile for the analysis of `MyData`, [`workflow/rules/MyData.smk`](./workflow/rules/MyData.smk) we load the specified version of the [`unsupervised_analysis` module](https://github.com/epigen/unsupervised_analysis) directly from GitHub, provide it with the previously loaded configuration and use as a prefix for all loaded rules. Recommendation: `{data_name}_{module_name}_`.
+    
+    ```python
+    ### MyData - Unsupervised Analysis ####
+    module MyData_unsupervised_analysis:
+        snakefile:
+            github("epigen/unsupervised_analysis", path="workflow/Snakefile", tag="v2.0.0")
+        config:
+            config_wf["MyData_unsupervised_analysis"]
+
+    use rule * from MyData_unsupervised_analysis as MyData_unsupervised_analysis_*
+    ```
+
 
 Here are links to the documentation on how to use a module in another Snakemake workflow:
-- [Introduction to the Module system with Snakemake 6.0.0 released in 2021-02-26](https://slides.com/johanneskoester/snakemake-6#/8)
+- [Introduction to the Module system with Snakemake 6.0.0 released 2021-02-26](https://slides.com/johanneskoester/snakemake-6#/8)
 - [Snakemake - Modules](https://snakemake.readthedocs.io/en/stable/snakefiles/modularization.html#snakefiles-modules)
 - [Snakemake - Using and combining pre-exising workflows](https://snakemake.readthedocs.io/en/stable/snakefiles/deployment.html#using-and-combining-pre-exising-workflows)
 
---- MORE DETAILS COMING SOON ---
 
 # Recipes
 > _"Civilization advances by extending the number of important operations which we can perform without thinking of them."_ - Alfred North Whitehead, author of _Principia Mathematica_
 
-**Recipes** are combinations of existing [Modules](#modules) into end-to-end best practice analyses. They can be used as templates for standard analyses by leveraging existing modules, thereby enabling fast iterations and progression to the unknown. Every recipe is described and presented using a wiki page by application to a public data set.
+**Recipes** are combinations of existing [Modules](#modules) into end-to-end best practice analyses (from A to Z). They can be used as templates for standard analyses by leveraging existing modules, thereby enabling fast iterations and progression to the unknown. Every recipe is described and presented using a wiki page by application to a public data set.
+
+Usage recommendation: Process each dataset module by module. Check the results of each module to inform the configuration of the next module. This iterative method allows for quick initial completion, followed by refinement in subsequent iterations based on feedback from yourself or collaborators. Adjustments in later iterations are straightforward, requiring only changes to individual configurations or annotations. Ultimately you end up with a reproducible and readable end-to-end analysis for each dataset.
 
 | Recipe | Description | # Modules | Results |
 | :---: | :---: | :---: | :---: |
@@ -252,7 +284,7 @@ Here are some tips for better understanding and troubleshooting that I found use
 - Finally, if you want to **develop your own workflows/modules** start with the excellent [tutorial](https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html) from the documentation.
 
 # Resources
-- [GitHub list of MR. PARETO modules](https://github.com/stars/sreichl/lists/mr-pareto)
+- [GitHub list of MR.PARETO modules](https://github.com/stars/sreichl/lists/mr-pareto)
 - [My Data Science Setup - Tutorial](https://bit.ly/TAP-data-science-setup)
 - [GitHub Page of this repository](https://epigen.github.io/mr.pareto/)
 - Curated and published workflows that could be used as modules:
