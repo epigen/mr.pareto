@@ -4,6 +4,7 @@
 Get 80% of all standard biomedical data science analyses done semi-automated with 20% of the effort, by leveraging [Snakemake's](https://snakemake.github.io/) module functionality to use and combine pre-existing workflows into arbitrarily complex analyses.
 
 # TL;DR - More Time for Science!
+> _"Programming is about trying to make the future less painful. It’s about making things easier for our teammates."_ from _The Pragmatic Programmer_ by Andy Hunt & Dave Thomas
 - **Why**: Time is the most precious resource. By taking care of efficiency (i.e., maximum output with limited resources) scientists can re-distribute their time to focus on effectiveness (i.e., the biggest impact possible).
 - **How**: Leverage the latest developments in workflow management to (re-)use and combine independent computational modules into arbitrarily complex analyses in combination with modern innovation methods (e.g., fast prototyping, design thinking, and agile concepts).
 - **What**: Independent computational **Modules** implemented as Snakemake workflows, encoding best practices and standard approaches, are used to scale, automate and parallelize analyses. Snakemake's module function enables arbitrarily complex combinations of pre-existing modules for any **Project**. **Recipes** combine modules into the most conceivable standard analyses, thereby accelerating projects to the point of the unknown. 
@@ -24,23 +25,6 @@ Altogether this enables complex, portable, transparent, reproducible, and docume
   * [Resources](#resources)
   * [CeMM Users](#cemm-users)
 
-# Motivation
-> _"Programming is about trying to make the future less painful. It’s about making things easier for our teammates."_ from _The Pragmatic Programmer_ by Andy Hunt & Dave Thomas
-
-Three key observations at the end of 2021 motivated me to start this project.
-  * Increased demand, but limited resources.
-    * The balance between data generators and data analysts is getting worse and communication suffers.
-    * There is no sustainable framework to preserve complex inventions and best practices.
-    * Established innovation methods (e.g., design thinking, fast prototyping, agile concepts,...) can not be leveraged.
-  * An increasing number of fields of relevance and interest, but not more time.
-    * Staying current in one field is getting harder.
-    * Getting into novel fields takes time and is risky.
-    * Method development is very competitive and takes a lot of time, hence it requires determination and focus.
-  * Reproducibility crisis and recent technological developments.
-    * Established analyses/approaches are often “reinvented”, leading to irreproducible results.
-    * Recent developments in workflow management enable a mindset shift towards software engineering best practices.
-    * Compounding effects of re-using established best practices become possible.
-
 # Modules
 > _"Is it functional, multifunctional, durable, well-fitted, simple, easy to maintain, and thoroughly tested? Does it provide added value, and doesn't cause unnecessary harm? Can it be simpler? Is it an innovation?"_ - Patagonia Design Principles
 
@@ -59,70 +43,7 @@ Three key observations at the end of 2021 motivated me to start this project.
 | [Perturbation Analysis using Mixscape from Seurat](https://github.com/epigen/mixscape_seurat) | Bioinformatics<br>(scCRISPR-seq) | [![DOI](https://zenodo.org/badge/481635018.svg)](https://zenodo.org/badge/latestdoi/481635018) | <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/epigen/mixscape_seurat?style=plastic"> |
 
 
-## Installation
-The following instructions should take less than 10 minutes to execute and hold true for any Snakemake workflow, including all MR.PARETO modules.
-
-  1. Install and setup [Snakemake](https://snakemake.readthedocs.io/en/stable/) (only once)
-      1. install Snakemake, which requires [conda](https://docs.conda.io/en/latest/) and [mamba](https://mamba.readthedocs.io/en/latest/), following the offical [documentation](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html) (the full installation is recommended). 
-          ```console
-          conda install -n base -c conda-forge mamba
-          conda activate base
-          mamba create -c conda-forge -c bioconda -n snakemake snakemake
-          ```
-          Most modules were developed and tested with Snakemake version 7.15.2 (recommended)
-          ```console
-          mamba create -c conda-forge -c bioconda -n snakemake snakemake=7.15.2
-          ```
-     2. set Snakemake environment variables for convenience (optional, but highly recommended)
-         1. configure a **dedicated Snakemake conda environment folder** (e.g., on a non-backed-up partition of your cluster) to avoid redundant installations and consolidate all conda environments installed by Snakemake in one easy-to-manage location.
-             ```bash
-             # put this in your .bashrc profile
-             export SNAKEMAKE_CONDA_PREFIX = path/to/conda/directory
-             ```
-         2. if you work on a cluster: configure the location of your **cluster profile** (i.e., the interface between Snakemake and your cluster's workload manager)
-             ```bash
-             # put this in your .bashrc profile
-             export SNAKEMAKE_PROFILE = path/to/your/cluster/profile
-             ```
-  2. clone the `{module}` repository (only once per module)
-     ```console
-     git clone git@github.com:user/{module}.git
-      ```
-
-**Note**: All software dependencies are installed and managed automatically via Snakemake and conda. They are installed upon the first run of the module.
-
-## Configuration
-Configure your analysis:
-1. this depends on the module and is always described in a separate `README.md` located in the module's `config` folder (i.e., `{module}/config/README.md`).
-2. most often it is 1 configuration file (`.yaml`) for configuring the analysis (e.g., parameters) and 1-2 annotation files (`.csv`) describing the data or data-specific configurations (e.g., file paths or metadata).
-
-## Execution
-Run the `{module}` from within the Snakemake conda environment and the module's root directory.
-1. activate the snakemake conda environment (Snakemake commands only work from within the snakemake conda environment)
-    ```console
-    conda activate snakemake
-    ```
-2. enter the `{module}` directory (always execute from within the top level of the module directory)
-    ```console
-    cd {module}
-    ```
-3. execute the module, while using conda to install and manage the required software
-    1. **local execution** with one core
-       ```console
-       snakemake --use-conda --cores 1
-       ```
-    2. **vanilla cluster execution** with 32 jobs for cluster engines that support shell scripts and have access to a common filesystem, (e.g. the Sun Grid Engine), see [Snakemake Cluster Execution documentation](https://snakemake.readthedocs.io/en/stable/executing/cluster.html)
-       ```{console}
-       snakemake --use-conda --cluster qsub --jobs 32
-       ```
-    3. **configured cluster execution** by using --profile (not necessary if you set it as an environment variable before)
-       ```{console}
-       snakemake --use-conda --profile path/to/cluster_profile
-       ```
-
-**Note**: Snakemake cluster profiles are the interface between an OS-agnostic Snakemake workflow and the system it is executed on (e.g., SLURM HPC). If you are working on another cluster engine get your cluster execution profile here: [The Snakemake-Profiles project](https://github.com/snakemake-profiles/doc)
-
-These instructions (installation, configuration, execution) are also shown in the modules' respective [Snakmake workflow catalog entry](https://snakemake.github.io/snakemake-workflow-catalog).
+For detailed instructions on the [installation](../../wiki/Installation), [configuration](../../wiki/Configuration), and [execution](../../wiki/Execution), you can check out the wiki. Generic instructions are also shown in the modules' respective [Snakmake workflow catalog entry](https://snakemake.github.io/snakemake-workflow-catalog).
 
 ## Results & Reports
 Finally, you can inspect the results directly and/or create a [Snakemake report](https://snakemake.readthedocs.io/en/stable/snakefiles/reporting.html).
