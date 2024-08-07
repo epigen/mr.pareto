@@ -76,7 +76,7 @@ Three components are required to use a module within your Snakemake workflow (i.
 | :---: | :---: | :---: | :---: |
 | [ATAC-seq Analysis](../../wiki/ATACseq-Analysis-Recipe) | From rAw BAMs to DAA enrichemntZ | 6(-7) | ... |
 | [RNA-seq Analysis](../../wiki/RNAseq-Analysis-Recipe) | From rAw BAMs to DEA enrichemntZ | 6(-7) | ... |
-| [Integrative RNA-seq & ATAC-seq Analysis](../../wiki/Integrative-Analysis-Recipe) | From count mAtrices to epigenetic potentialZ | 5 | ... |
+| [Integrative ATAC-seq & RNA-seq Analysis](../../wiki/Integrative-Analysis-Recipe) | From count mAtrices to epigenetic potentialZ | 7(-8) | ... |
 | [scRNA-seq Analysis](../../wiki/scRNAseq-Analysis-Recipe) | From count mAtrix to DEA enrichemntZ | 5(-6) | ... |
 | [scCRISPR-seq Analysis](../../wiki/scCRISPRseq-Analysis-Recipe) | From count mAtrix to KO phenotype enrichemntZ | 6(-7) | ... |
 
