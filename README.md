@@ -41,18 +41,24 @@ You can [(re-)use and combine pre-existing workflows](https://snakemake.readthed
 
 Three components are required to use a module within your Snakemake workflow (i.e., a project).
 - Configuration: The [`config/config.yaml`](./config/config.yaml) file has to point to the respective configuration files per dataset and workflow.
+  ```python
+  #### Datasets and Workflows to include ###
+  workflows:
+      MyData:
+          other_workflow: "config/MyData/MyData_other_workflow_config.yaml"
+  ```
 - Snakefile: Within the main Snakefile ([`workflow/Snakefile`](.workflow/Snakefile)) we have to:
   - load all configurations;
   - include the snakefiles that contain the loaded modules (see next point);
   - and add all modules' outputs to the target's rule `input`.
 - Modules: Load the required module and its rules within separate snakefiles (`*.smk`) in the rule folder. Recommendation: Use one snakefile per dataset.
   ```python
-    module other_workflow:
+    module MyData_other_workflow:
       # here, plain paths, URLs and the special markers for code hosting providers (e.g., github) are possible.
       snakefile: "other_workflow/Snakefile"
-      config: config["other-workflow"]
+      config: config["MyData_other_workflow"]
 
-    use rule * from other_workflow as other_*
+    use rule * from MyData_other_workflow as MyData_other_workflow_*
     ```
 
 > [!TIP]
