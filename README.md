@@ -11,20 +11,6 @@ Get 80% of all standard biomedical data science analyses done semi-automated wit
 
 Altogether this enables complex, portable, transparent, reproducible, and documented analysis of biomedical data at scale.
 
-# Table of contents
-  * [Motivation](#motivation)
-  * [Modules](#modules)
-    * [Installation](#installation)
-    * [Configuration](#configuration)
-    * [Execution](#execution)
-    * [Results & Reports](#results--reports)
-    * [Sustainability & Reproducibility](#sustainability--reproducibility)
-  * [Projects using multiple Modules](#projects-using-multiple-modules)
-  * [Recipes](#recipes)
-  * [Tips](#tips)
-  * [Resources](#resources)
-  * [CeMM Users](#cemm-users)
-
 # Modules
 > _"Is it functional, multifunctional, durable, well-fitted, simple, easy to maintain, and thoroughly tested? Does it provide added value, and doesn't cause unnecessary harm? Can it be simpler? Is it an innovation?"_ - Patagonia Design Principles
 
@@ -42,81 +28,7 @@ Altogether this enables complex, portable, transparent, reproducible, and docume
 | [Differential Analysis using Seurat](https://github.com/epigen/dea_seurat) | Bioinformatics<br>(scRNA-seq) | [![DOI](https://zenodo.org/badge/483638364.svg)](https://zenodo.org/doi/10.5281/zenodo.10689139) | <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/epigen/dea_seurat?style=plastic"> |
 | [Perturbation Analysis using Mixscape from Seurat](https://github.com/epigen/mixscape_seurat) | Bioinformatics<br>(scCRISPR-seq) | [![DOI](https://zenodo.org/badge/481635018.svg)](https://zenodo.org/badge/latestdoi/481635018) | <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/epigen/mixscape_seurat?style=plastic"> |
 
-
 For detailed instructions on the [installation](../../wiki/Installation), [configuration](../../wiki/Configuration), and [execution](../../wiki/Execution), you can check out the wiki. Generic instructions are also shown in the modules' respective [Snakmake workflow catalog entry](https://snakemake.github.io/snakemake-workflow-catalog).
-
-## Results & Reports
-Finally, you can inspect the results directly and/or create a [Snakemake report](https://snakemake.readthedocs.io/en/stable/snakefiles/reporting.html).
-In the following, `{project}` refers to a dataset and its potential subsets/analyses that are analyzed by a `{module}`.
-
-### Results
-Next to the expected `{module}` outputs (i.e., results), a complete conda export of the actually used software as `.yaml` files (environments) and copies of all provided configuration and annotation files (configurations), are provided within the `{project}` `{result_directory}`.
-
-`{result_directory}/` (e.g., `myProject`)
-  - `{module}/` contains all result files with subfolders for each subset/analysis (e.g., `unsupervised_analysis/`).
-  - `envs/{module}/` (e.g., `envs/unsupervised_analysis/sklearn.yaml`)
-  - `configs/{module}/` (e.g., `configs/unsupervised_analysis/myProject_unsupervised_analyis_config.yaml`)
-
-It is recommended to make this part of the module by including [a separate Snakemake rule](https://gist.github.com/sreichl/c6bda9e4193329ead05e5f2a39b22709) to export environment specifications, configuration, and annotation files.
-
-### Report
-The files contained in the report are most of the time a subset of all results focusing on visualizations.
-```bash
-# this can take a few minutes, depending on the size and number of files in the results
-snakemake --report /absolute/path/to/report.zip
-```
-
-The command creates a self-contained HTML-based report in a ZIP archive with the following sections:
-- GENERAL (automatically filled by Snakemake)
-    - Workflow: interactive rulegraph recapitulating individual steps, used software and concrete code of the `{module}`
-    - Statistics: duration and timing of individual steps
-    - About: information on the "Embedded Packages" used by the report
-- RESULT (module specific result section)
-    - Configuration/`{project}_{module}/` (e.g., `Configuration/myProject_unsupervised_analysis/myProject_unsupervised_analyis_config.yaml`)
-    - Software/`{project}_{module}/` (e.g., `Software/myProject_unsupervised_analysis/sklearn.yaml`)
-    - `{project}_{module}`: one top-level **category**, and **subcategories** for subsets/analyses containing results of all respective analysis steps (e.g., `myProject_unsupervised_analysis`).
-
-**Both, the `{project}` result-directory and the report, deliberately follow the same structure for every module to enable the (repetitive) usage of different modules within one project with multiple data sets (see [Projects](#projects-using-multiple-modules) section for details).**
-
-## Sustainability & Reproducibility
-To ensure sustainable development, implicit documentation and reproducibility each `{module}` has to fulfill the following requirements:
-- GitHub repository for development and version control
-    - descriptive name (i.e., what it does and purpose e.g, dea_limma) and split by underscores '_'
-    - README according to the provided [template](README_template.md)
-    - repository structure according to [Snakemake's recommendation](https://snakemake.readthedocs.io/en/stable/snakefiles/deployment.html)
-    - [releases](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) (i.e.,  versions) according to the [semantic versioning scheme](https://semver.org/)
-    - Workflow rulegraph in `workflow/dags/rulegraph.svg`
-        ```console
-        snakemake --rulegraph --forceall | dot -Tsvg > workflow/dags/rulegraph.svg
-        ```
-    - GitHub page displaying the README
-    - LICENSE file (recommendation: MIT)
-    - CITATION.cff file
-      - [CFF docs](https://citation-file-format.github.io/)
-      - [GitHub citation files](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files)
-      - [Generator](https://citation-file-format.github.io/cff-initializer-javascript/#/)
-    - (optional, but recommended) add example data and configurations for other users as starting point
-    - (optional, but recommended) provide resources and/or external data sources (e.g., reference data) as links or, Zenodo or [Git Large File Storage](https://docs.github.com/en/repositories/working-with-files/managing-large-files)
-- Zenodo repository to ensure compatibility, citability, and long-term archiving
-    - via [automated GitHub hook](https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content) 
-    - every GitHub release will trigger the creation of a new release in the Zenodo repository, and thereby a new DOI
-    - the Zenodo repository will be annotated using the provided information in the CITATION.cff file in your GitHub repository
-    - there is one permanent DOI that can be used to reference/cite all releases/versions of a given repository -> we recommend using this DOI and the release version for referencing e.g., in publications
-    - add the dynamic DOI badge to the GitHub repository
-    - add the permanent project DOI to the README in the introduction, in the methods, at the bottom (Zenodo link), and add it to the CITATION.cff.
-- [Snakemake Workflow Catalog](https://snakemake.github.io/snakemake-workflow-catalog/) entry
-   - increase visibility by fulfilling the requirements for [Standardized Usage](https://snakemake.github.io/snakemake-workflow-catalog/?rules=true)
-   - every GitHub release will trigger the entry to be updated
-- Snakemake Report for implicit documentation and collaboration
-    - following the [above](#report) described structure to enhance reproducibility (via export of used software and configuration) and ensure module compatibility
-- Result directory 
-    - following the [above](#results) described structure to enhance reproducibility (via export of used software and configuration) and ensure module compatibility
-- Software Management with [conda](https://docs.conda.io/en/latest/) for reproducibility
-  - specify the version of every entry in your conda environment specification files (`workflow/envs/*.yaml`)
-- (COMING SOON) Containerization with Docker/Singularity for OS-level virtualization
-    - final frontier to be explored and implemented across MR.PARETO modules
-    - automated containerization supported since Snakemake 6.0.0 (released 2021-02-26)
-- Finally, add the `{module}` to the summary table with all modules in this repository's README under [Modules](#modules).
 
 # Projects using multiple Modules
 > _“Absorb what is useful. Discard what is not. Add what is uniquely your own.”_ - Bruce Lee
@@ -160,35 +72,6 @@ Usage recommendation: Process each dataset module by module. Check the results o
 | [scRNA-seq Analysis](../../wiki/scRNA‐seq-Analysis-Recipe) | From count mAtrix to DEA enrichemntZ | 5(-6) | ... |
 | [scCRISPR-seq Analysis](../../wiki/scCRISPR‐seq-Analysis-Recipe) | From count mAtrix to KO phenotype enrichemntZ | 6(-7) | ... |
 
-# Tips
-Here are some tips for better understanding and troubleshooting that I found useful.
-- always use the flag `-p` that makes Snakemake print the resulting **shell commands** that will be executed.
-    ```console
-    snakemake -p
-    ```
-- always perform first a **dry run** using the flag `-n`, to check if the configuration works and the workflow does what you intend it to do.
-    ```console
-    snakemake -p -n
-    ```
-- if unsure why a certain rule will be executed use option `--reason` during the dry run, this will give the **reason for the execution** of each rule.
-    ```console
-    snakemake -p -n --reason
-    ```
-- if you use a module in multiple projects with **different configuration files** use the command line argument `--configfile` to overwrite values from the configfile statement. Important note from the [docs](https://snakemake.readthedocs.io/en/stable/snakefiles/configuration.html#configuration): Note that any values parsed into the config dictionary with any of the above mechanisms are merged, i.e., all keys defined via a configfile statement, or the `--configfile` and `--config` command line arguments will end up in the final config dictionary, but if two methods define the same key, command line overwrites the configfile statement.
-    ```console
-    snakemake --configfile path/to/config.yaml
-    ```
-- in case a **module crashes**, you manually canceled your jobs or when Snakemake gets stuck trying to "resume.. resubmit.." jobs, then remove the `.snakemake/incomplete` directory.
-- command to **generate the directed acyclic graph (DAG)** of all jobs with current configuration for visual inspection (most often too large to inspect).
-    ```console
-    snakemake --dag --forceall | dot -Tsvg > workflow/dags/all_DAG.svg
-    ```
-- in case of errors during installations, make dure your conda channel priorities are set to "strict"
-    ```console
-    conda config --set channel_priority strict
-    ```
-- Finally, if you want to **develop your own workflows/modules** start with the excellent [tutorial](https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html) from the documentation.
-
 # Resources
 - [GitHub list of MR.PARETO modules](https://github.com/stars/sreichl/lists/mr-pareto)
 - [My Data Science Setup - Tutorial](https://bit.ly/TAP-data-science-setup)
@@ -203,6 +86,3 @@ Here are some tips for better understanding and troubleshooting that I found use
     - [Conda](https://docs.conda.io/en/latest/)
     - [Docker](https://www.docker.com/)
     - [Singularity](https://docs.sylabs.io/guides/3.5/user-guide/index.html#) 
-
-# CeMM Users
-We created a Snakemake cluster profile and job conductor for the HPC at [CeMM](https://cemm.at/). You can find the repository including documentation and instructions here [cemm.slurm.sm](https://github.com/epigen/cemm.slurm.sm).
