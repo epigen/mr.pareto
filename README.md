@@ -34,29 +34,29 @@ Altogether this enables complex, portable, transparent, reproducible, and docume
 # Projects using multiple Modules
 > _“Absorb what is useful. Discard what is not. Add what is uniquely your own.”_ - Bruce Lee
 
-The combination of multiple modules into projects that analyze multiple datasets represents the overarching vision and power of MR.PARETO. When applied to multiple datasets within a research project, each dataset should have its own result directory within a project directory. As a concrete example we will apply the [`unsupervised_analysis` module](https://github.com/epigen/unsupervised_analysis) on `MyData` stored on [data/MyData](./data/MyData). A full [tutorial](../../wiki/Module-Usage-in-Projects) is available on the [wiki](https://github.com/epigen/mr.pareto/wiki).
+You can [(re-)use and combine pre-existing workflows](https://snakemake.readthedocs.io/en/stable/snakefiles/deployment.html#using-and-combining-pre-exising-workflows) within your projects by loading them as [**Modules**](https://snakemake.readthedocs.io/en/stable/snakefiles/modularization.html#snakefiles-modules) since [Snakemake 6](https://slides.com/johanneskoester/snakemake-6#/8). The combination of multiple modules into projects that analyze multiple datasets represents the overarching vision and power of MR.PARETO.
+
+> [!NOTE]
+> When applied to multiple datasets within a project, each dataset should have its own result directory within the project directory.
 
 Three components are required to use a module within your Snakemake workflow (i.e., a project).
 - Configuration: The [`config/config.yaml`](./config/config.yaml) file has to point to the respective configuration files per dataset and workflow.
-  
-    Therefore, we First, we provide the respective configuration file using the predefined structure.
-    https://github.com/epigen/mr.pareto/blob/ffa00e74f1227f5c4f526e2a84fdc832c18ad720/config/config.yaml#L12-L15
-- Snakefile: Within the main Snakefile ([`workflow/Snakefile`](.workflow/Snakefile)) we have to do three things
-    - load and parse all configurations into a structured dictionary.
-      https://github.com/epigen/mr.pareto/blob/ffa00e74f1227f5c4f526e2a84fdc832c18ad720/workflow/Snakefile#L19-L28
-    - include the `MyData` analysis snakfile from the rule subfolder (see below).
-      https://github.com/epigen/mr.pareto/blob/ffa00e74f1227f5c4f526e2a84fdc832c18ad720/workflow/Snakefile#L31-L32
-    - require all outputs from the used module as inputs to the target rule `all`.
-      https://github.com/epigen/mr.pareto/blob/ffa00e74f1227f5c4f526e2a84fdc832c18ad720/workflow/Snakefile#L35-L40
-- Modules: Load the required module and its rules within separate snakefiles (.smk) in the rule folder. Recommendation: Use one snakefile (.smk) per dataset.
-    
-    In the dedicated snakefile for the analysis of `MyData`, [`workflow/rules/MyData.smk`](./workflow/rules/MyData.smk) we load the specified version of the [`unsupervised_analysis` module](https://github.com/epigen/unsupervised_analysis) directly from GitHub, provide it with the previously loaded configuration and use as a prefix for all loaded rules. Recommendation: `{data_name}_{module_name}_`.
-    https://github.com/epigen/mr.pareto/blob/ffa00e74f1227f5c4f526e2a84fdc832c18ad720/workflow/rules/MyData.smk#L1-L10
+- Snakefile: Within the main Snakefile ([`workflow/Snakefile`](.workflow/Snakefile)) we have to:
+  - load all configurations;
+  - include the snakefiles that contain the loaded modules (see next point);
+  - and add all modules' outputs to the target's rule `input`.
+- Modules: Load the required module and its rules within separate snakefiles (`*.smk`) in the rule folder. Recommendation: Use one snakefile per dataset.
+  ```python
+    module other_workflow:
+      # here, plain paths, URLs and the special markers for code hosting providers (e.g., github) are possible.
+      snakefile: "other_workflow/Snakefile"
+      config: config["other-workflow"]
 
-Here are links to the documentation on how to (re-)use modules in your Snakemake workflow:
-- [Introduction to the Module system with Snakemake 6.0.0 released 2021-02-26](https://slides.com/johanneskoester/snakemake-6#/8)
-- [Snakemake - Modules](https://snakemake.readthedocs.io/en/stable/snakefiles/modularization.html#snakefiles-modules)
-- [Snakemake - Using and combining pre-exising workflows](https://snakemake.readthedocs.io/en/stable/snakefiles/deployment.html#using-and-combining-pre-exising-workflows)
+    use rule * from other_workflow as other_*
+    ```
+
+> [!TIP]
+> A full [tutorial](../../wiki/Module-Usage-in-Projects) is available on the [wiki](https://github.com/epigen/mr.pareto/wiki).
 
 # Recipes
 > _"Civilization advances by extending the number of important operations which we can perform without thinking of them."_ - Alfred North Whitehead, author of _Principia Mathematica_
