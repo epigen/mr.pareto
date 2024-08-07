@@ -28,12 +28,13 @@ Altogether this enables complex, portable, transparent, reproducible, and docume
 | [Differential Analysis using Seurat](https://github.com/epigen/dea_seurat) | Bioinformatics<br>(scRNA-seq) | [![DOI](https://zenodo.org/badge/483638364.svg)](https://zenodo.org/doi/10.5281/zenodo.10689139) | <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/epigen/dea_seurat?style=plastic"> |
 | [Perturbation Analysis using Mixscape from Seurat](https://github.com/epigen/mixscape_seurat) | Bioinformatics<br>(scCRISPR-seq) | [![DOI](https://zenodo.org/badge/481635018.svg)](https://zenodo.org/badge/latestdoi/481635018) | <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/epigen/mixscape_seurat?style=plastic"> |
 
-For detailed instructions on the [installation](../../wiki/Installation), [configuration](../../wiki/Configuration), and [execution](../../wiki/Execution), you can check out the wiki. Generic instructions are also shown in the modules' respective [Snakmake workflow catalog entry](https://snakemake.github.io/snakemake-workflow-catalog).
+> [!TIP]
+> For detailed instructions on the [installation](../../wiki/Installation), [configuration](../../wiki/Configuration), and [execution](../../wiki/Execution) of modules, you can check out the [wiki](https://github.com/epigen/mr.pareto/wiki). Generic instructions are also shown in the modules' respective [Snakmake workflow catalog entry](https://snakemake.github.io/snakemake-workflow-catalog).
 
 # Projects using multiple Modules
 > _“Absorb what is useful. Discard what is not. Add what is uniquely your own.”_ - Bruce Lee
 
-The combination of multiple modules into projects that analyze multiple datasets represents the overarching vision and power of MR.PARETO. When applied to multiple datasets within a research project, each dataset should have its own result directory within a project directory. As a concrete example we will apply the [`unsupervised_analysis` module](https://github.com/epigen/unsupervised_analysis) on `MyData` stored on [data/MyData](./data/MyData). A full [tutorial](../../wiki/Module-Usage-in-Projects) is available on the wiki.
+The combination of multiple modules into projects that analyze multiple datasets represents the overarching vision and power of MR.PARETO. When applied to multiple datasets within a research project, each dataset should have its own result directory within a project directory. As a concrete example we will apply the [`unsupervised_analysis` module](https://github.com/epigen/unsupervised_analysis) on `MyData` stored on [data/MyData](./data/MyData). A full [tutorial](../../wiki/Module-Usage-in-Projects) is available on the [wiki](https://github.com/epigen/mr.pareto/wiki).
 
 Three components are required to use a module within your Snakemake workflow (i.e., a project).
 - Configuration: The [`config/config.yaml`](./config/config.yaml) file has to point to the respective configuration files per dataset and workflow.
@@ -60,21 +61,23 @@ Here are links to the documentation on how to (re-)use modules in your Snakemake
 # Recipes
 > _"Civilization advances by extending the number of important operations which we can perform without thinking of them."_ - Alfred North Whitehead, author of _Principia Mathematica_
 
-**Recipes** are combinations of existing [Modules](#modules) into end-to-end best practice analyses (from A to Z). They can be used as templates for standard analyses by leveraging existing modules, thereby enabling fast iterations and progression to the unknown. Every recipe is described and presented using a wiki page by application to a public data set.
+**Recipes** are combinations of existing [Modules](#modules) into end-to-end best practice analyses (from A to Z). They can be used as templates for standard analyses by leveraging existing modules, thereby enabling fast iterations and progression to the unknown. Every recipe is described and presented using a [wiki](https://github.com/epigen/mr.pareto/wiki) page by application to a public data set.
 
-Usage recommendation: Process each dataset module by module. Check the results of each module to inform the configuration of the next module. This iterative method allows for quick initial completion, followed by refinement in subsequent iterations based on feedback from yourself or collaborators. Adjustments in later iterations are straightforward, requiring only changes to individual configurations or annotations. Ultimately you end up with a reproducible and readable end-to-end analysis for each dataset.
+> [!TIP]
+> Process each dataset module by module. Check the results of each module to inform the configuration of the next module. This iterative method allows for quick initial completion, followed by refinement in subsequent iterations based on feedback from yourself or collaborators. Adjustments in later iterations are straightforward, requiring only changes to individual configurations or annotations. Ultimately you end up with a reproducible and readable end-to-end analysis for each dataset.
 
 | Recipe | Description | # Modules | Results |
 | :---: | :---: | :---: | :---: |
-| [ATAC-seq Analysis](../../wiki/ATAC‐seq-Analysis-Recipe) | From rAw BAMs to DAA enrichemntZ | 6(-7) | ... |
-| [RNA-seq Analysis](../../wiki/RNA‐seq-Analysis-Recipe) | From rAw BAMs to DEA enrichemntZ | 6(-7) | ... |
+| [ATAC-seq Analysis](../../wiki/ATACseq-Analysis-Recipe) | From rAw BAMs to DAA enrichemntZ | 6(-7) | ... |
+| [RNA-seq Analysis](../../wiki/RNAseq-Analysis-Recipe) | From rAw BAMs to DEA enrichemntZ | 6(-7) | ... |
 | [Integrative RNA-seq & ATAC-seq Analysis](../../wiki/Integrative-Analysis-Recipe) | From count mAtrices to epigenetic potentialZ | 5 | ... |
-| [scRNA-seq Analysis](../../wiki/scRNA‐seq-Analysis-Recipe) | From count mAtrix to DEA enrichemntZ | 5(-6) | ... |
-| [scCRISPR-seq Analysis](../../wiki/scCRISPR‐seq-Analysis-Recipe) | From count mAtrix to KO phenotype enrichemntZ | 6(-7) | ... |
+| [scRNA-seq Analysis](../../wiki/scRNAseq-Analysis-Recipe) | From count mAtrix to DEA enrichemntZ | 5(-6) | ... |
+| [scCRISPR-seq Analysis](../../wiki/scCRISPRseq-Analysis-Recipe) | From count mAtrix to KO phenotype enrichemntZ | 6(-7) | ... |
 
 # Resources
+- [MR.PARETO Wiki for instructions & tutorials](https://github.com/epigen/mr.pareto/wiki)
 - [GitHub list of MR.PARETO modules](https://github.com/stars/sreichl/lists/mr-pareto)
-- [My Data Science Setup - Tutorial](https://bit.ly/TAP-data-science-setup)
+- [My Data Science Setup - Tutorial for developing Snakemake workflows and beyond](https://bit.ly/TAP-data-science-setup)
 - [GitHub Page of this repository](https://epigen.github.io/mr.pareto/)
 - Curated and published workflows that could be used as modules:
     - [Snakemake Workflow Catalog](https://snakemake.github.io/snakemake-workflow-catalog/)
