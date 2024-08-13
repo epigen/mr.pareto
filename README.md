@@ -28,6 +28,9 @@ Altogether this enables complex, portable, transparent, reproducible, and docume
 | [Differential Analysis using Seurat](https://github.com/epigen/dea_seurat) | Bioinformatics<br>(scRNA-seq) | [![DOI](https://zenodo.org/badge/483638364.svg)](https://zenodo.org/doi/10.5281/zenodo.10689139) | <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/epigen/dea_seurat?style=plastic"> |
 | [Perturbation Analysis using Mixscape from Seurat](https://github.com/epigen/mixscape_seurat) | Bioinformatics<br>(scCRISPR-seq) | [![DOI](https://zenodo.org/badge/481635018.svg)](https://zenodo.org/badge/latestdoi/481635018) | <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/epigen/mixscape_seurat?style=plastic"> |
 
+> [!NOTE]  
+> **⭐️ Star and 📤 share modules** you find valuable — help others discover them, and guide our focus for future work!
+
 > [!TIP]
 > For detailed instructions on the [installation](../../wiki/Installation), [configuration](../../wiki/Configuration), and [execution](../../wiki/Execution) of modules, you can check out the [wiki](https://github.com/epigen/mr.pareto/wiki). Generic instructions are also shown in the modules' respective [Snakmake workflow catalog entry](https://snakemake.github.io/snakemake-workflow-catalog).
 
@@ -79,6 +82,9 @@ Three components are required to use a module within your Snakemake workflow (i.
 | [Integrative ATAC-seq & RNA-seq Analysis](../../wiki/Integrative-Analysis-Recipe) | From count mAtrices to epigenetic potentialZ | 7(-8) | ... |
 | [scRNA-seq Analysis](../../wiki/scRNAseq-Analysis-Recipe) | From count mAtrix to DEA enrichemntZ | 5(-6) | ... |
 | [scCRISPR-seq Analysis](../../wiki/scCRISPRseq-Analysis-Recipe) | From count mAtrix to KO phenotype enrichemntZ | 6(-7) | ... |
+
+> [!NOTE]  
+> **⭐️ Star this repository and 📤 share recipes** you find valuable — help others discover them, and guide our focus for future work!
 
 # Resources
 - [MR.PARETO Wiki for instructions & tutorials](https://github.com/epigen/mr.pareto/wiki)
