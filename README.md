@@ -7,7 +7,7 @@ Get 80% of all standard (biomedical) data science analyses done semi-automated w
 > _"Programming is about trying to make the future less painful. It’s about making things easier for our teammates."_ from _The Pragmatic Programmer_ by Andy Hunt & Dave Thomas
 - **Why**: Time is the most precious resource. By taking care of efficiency (i.e., maximum output with limited resources) scientists can re-distribute their time to focus on effectiveness (i.e., the biggest impact possible).
 - **How**: Leverage the latest developments in workflow management to (re-)use and combine independent computational modules into arbitrarily complex analyses in combination with modern innovation methods (e.g., fast prototyping, design thinking, and agile concepts).
-- **What**: Independent computational **Modules** implemented as Snakemake workflows, encoding best practices and standard approaches, are used to scale, automate and parallelize analyses. Snakemake's module functionality enables arbitrarily complex combinations of pre-existing modules for any **Project**. **Recipes** combine modules into the most conceivable standard analyses, thereby accelerating projects to the point of the unknown. 
+- **What**: Independent computational **Modules** implemented as Snakemake workflows, encoding best practices and standard approaches, are used to scale, automate, and parallelize analyses. Snakemake's module functionality enables arbitrarily complex combinations of pre-existing modules for any **Project**. **Recipes** combine modules into the most conceivable standard analyses, thereby accelerating projects to the point of the unknown. 
 
 Altogether this enables complex, portable, transparent, reproducible, and documented analysis of biomedical data analysis at scale.
 
@@ -52,7 +52,7 @@ Three components are required to use a module within your Snakemake workflow (i.
   ```
 - Snakefile: Within the main Snakefile ([`workflow/Snakefile`](.workflow/Snakefile)) we have to:
   - load all configurations;
-  - include the snakefiles that contain the dataset specific loaded modules and rules (see next point);
+  - include the snakefiles that contain the dataset-specific loaded modules and rules (see next point);
   - and add all modules' outputs to the target's rule `input`.
 - Modules: Load the required modules and their rules within separate snakefiles (`*.smk`) in the `rule/` folder. Recommendation: Use one snakefile per dataset.
   ```python
@@ -70,7 +70,7 @@ Three components are required to use a module within your Snakemake workflow (i.
 # 📜 Recipes
 > _"Civilization advances by extending the number of important operations which we can perform without thinking of them."_ - Alfred North Whitehead, author of _Principia Mathematica_
 
-**Recipes** are combinations of existing [Modules](#modules) into end-to-end best practice analyses. They can be used as templates for standard analyses by leveraging existing modules, thereby enabling fast iterations and progression into the unknown. Every recipe is described and presented using a [wiki](https://github.com/epigen/mr.pareto/wiki) page by application to a public data set.
+**Recipes** are combinations of existing modules into end-to-end best practice analyses. They can be used as templates for standard analyses by leveraging existing modules, thereby enabling fast iterations and progression into the unknown. Every recipe is described and presented using a [wiki](https://github.com/epigen/mr.pareto/wiki) page by application to a public data set.
 
 > [!TIP]
 > Process each dataset module by module. Check the results of each module to inform the configuration of the next module. This iterative method allows for quick initial completion, followed by refinement in subsequent iterations based on feedback from yourself or collaborators. Adjustments in later iterations are straightforward, requiring only changes to individual configurations or annotations. Ultimately you end up with a reproducible and readable end-to-end analysis for each dataset.
