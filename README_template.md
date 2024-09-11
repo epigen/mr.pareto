@@ -27,11 +27,11 @@ Table of contents
 # Software
 This project is designed to run on top of the [Snakemake workflow management system](https://snakemake.readthedocs.io/en/stable/) and has been tested against the Snakemake version listed in the table below. In addition this project depends on, and is made possible by, the following Software:
 
-| Software | Version | Reference (DOI) |
-| :---: | :---: | :---: |
-| **Snakemake** | **X.X.X** | https://doi.org/10.12688/f1000research.29032.2 |
-| packageA | X.X.X | https://doi.org/10.AAA/ |
-| packageB | X.X.X | https://doi.org/10.BBBB/ |
+| Software | Reference (DOI) |
+| :---: | :---: |
+| **Snakemake v8.20.1** | https://doi.org/10.12688/f1000research.29032.2 |
+| packageA | https://doi.org/10.AAA/ |
+| packageB | https://doi.org/10.BBBB/ |
 
 
 # Methods
