@@ -29,7 +29,7 @@ This project is designed to run on top of the [Snakemake workflow management sys
 
 | Software | Reference (DOI) |
 | :---: | :---: |
-| **Snakemake v8.20.1** | https://doi.org/10.12688/f1000research.29032.2 |
+| Snakemake (v8.20.1) | https://doi.org/10.12688/f1000research.29032.2 |
 | packageA | https://doi.org/10.AAA/ |
 | packageB | https://doi.org/10.BBBB/ |
 
