@@ -1,4 +1,10 @@
-[![DOI](https://zenodo.org/badge/XXXXXX.svg)](https://zenodo.org/badge/latestdoi/XXXXXX)
+[![MR.PARETO](https://img.shields.io/badge/MR.PARETO-red)](https://github.com/epigen/mr.pareto/)
+[![DOI](https://zenodo.org/badge/XXXXXX.svg)](https://zenodo.org/badge/latestdoi/XXXXXX) 
+[![](https://tokei.rs/b1/github/epigen/unsupervised_analysis?category=code)]() 
+[![](https://tokei.rs/b1/github/epigen/unsupervised_analysis?category=files)]()
+[![GitHub license](https://img.shields.io/github/license/epigen/unsupervised_analysis)](https://github.com/epigen/unsupervised_analysis/blob/master/LICENSE)
+[![Snakemake](https://img.shields.io/badge/Snakemake->=8.20.1-green)](https://snakemake.readthedocs.io/en/stable/)
+
 
 # Analysis & Visualization Snakemake Workflow Using/Powered by PACKAGE for DATA/MODALITY
 A [Snakemake](https://snakemake.readthedocs.io/en/stable/) workflow for performing and visualizing analyses of data (e.g., ...) powered by the package [package](https://www.packageURL.org).
