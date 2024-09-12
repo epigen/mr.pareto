@@ -3,8 +3,8 @@
 [![](https://tokei.rs/b1/github/epigen/XXXX?category=code)]() 
 [![](https://tokei.rs/b1/github/epigen/XXXX?category=files)]()
 [![GitHub license](https://img.shields.io/github/license/epigen/XXXX)](https://github.com/epigen/XXXX/blob/master/LICENSE)
+![GitHub Release](https://img.shields.io/github/v/release/epigen/XXXXX)
 [![Snakemake](https://img.shields.io/badge/Snakemake->=8-green)](https://snakemake.readthedocs.io/en/stable/)
-
 
 # Analysis & Visualization Snakemake Workflow Using/Powered by PACKAGE for DATA/MODALITY
 A [Snakemake 8](https://snakemake.readthedocs.io/en/stable/) workflow for performing and visualizing analyses of data (e.g., ...) powered by the package [package](https://www.packageURL.org).
