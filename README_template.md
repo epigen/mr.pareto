@@ -78,7 +78,10 @@ Detailed specifications can be found here [./config/README.md](./config/README.m
 
 # 📑 Publications
 The following publications successfully used this module for their analyses.
-- ...
+
+```
+...
+```
 
 # ⭐ Star History
 
