@@ -101,3 +101,6 @@ Three components are required to use a module within your Snakemake workflow (i.
     - [Conda](https://docs.conda.io/en/latest/)
     - [Docker](https://www.docker.com/)
     - [Singularity](https://docs.sylabs.io/guides/3.5/user-guide/index.html#) 
+
+# ⭐ Star History of Modules
+[![Star History Chart](https://api.star-history.com/svg?repos=epigen/atacseq_pipeline,epigen/unsupervised_analysis,epigen/enrichment_analysis,epigen/spilterlize_integrate,epigen/dea_limma,epigen/dea_seurat,epigen/scrnaseq_processing_seurat,epigen/mixscape_seurat,epigen/genome_tracks&type=Date)](https://star-history.com/#epigen/atacseq_pipeline&epigen/unsupervised_analysis&epigen/enrichment_analysis&epigen/spilterlize_integrate&epigen/dea_limma&epigen/dea_seurat&epigen/scrnaseq_processing_seurat&epigen/mixscape_seurat&epigen/genome_tracks&Date)
