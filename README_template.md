@@ -63,7 +63,8 @@ Here are some tips for the usage of this workflow:
 Detailed specifications can be found here [./config/README.md](./config/README.md)
 
 # 📖 Examples
---- COMING SOON ---
+For complete working examples, including data and configuration, check out how the following [MR.PARETO Recipes](https://github.com/epigen/mr.pareto/?tab=readme-ov-file#-recipes) use this module
+- ...
 
 # 🔗 Links
 - [GitHub Repository](https://github.com/user/module/)
@@ -72,16 +73,21 @@ Detailed specifications can be found here [./config/README.md](./config/README.m
 - [Snakemake Workflow Catalog Entry](https://snakemake.github.io/snakemake-workflow-catalog?usage=user/module)
 
 # 📚 Resources
-- Recommended [MR.PARETO](https://github.com/epigen/mr.pareto) modules for up-/downstream analyses:
-    - ...
-- ...
+- Recommended compatible [MR.PARETO Modules](https://github.com/epigen/mr.pareto/#-modules) for up-/downstream analyses:
+  - [Unsupervised Analysis](https://github.com/epigen/unsupervised_analysis) to understand and visualize similarities and variations between cells/samples, including dimensionality reduction and cluster analysis. Useful for all tabular data including single-cell and bulk sequencing data.
+  - [<ins>Sp</ins>lit, F<ins>ilter</ins>, Norma<ins>lize</ins> and <ins>Integrate</ins> Sequencing Data](https://github.com/epigen/spilterlize_integrate/) after count quantification.
+  - [Differential Analysis with limma](https://github.com/epigen/dea_limma) to identify and visualize statistically significantly different features (e.g., genes or genomic regions) between sample groups.
+  - [Enrichment Analysis](https://github.com/epigen/enrichment_analysis) for biomedical interpretation of (differential) analysis results using prior knowledge.
+  - [Genome Browser Track Visualization](https://github.com/epigen/genome_tracks/) for quality control and visual inspection/analysis of genomic regions/genes of interest or top hits.
+  - [ATAC-seq Processing](https://github.com/epigen/atacseq_pipeline) to quantify chromatin accessibility.
+  - [scRNA-seq Data Processing & Visualization](https://github.com/epigen/scrnaseq_processing_seurat) for processing (multimodal) single-cell transcriptome data.
+  - [Differential Analysis using Seurat](https://github.com/epigen/dea_seurat) to identify and visualize statistically significantly different features (e.g., genes or proteins) between groups.
+  - [Perturbation Analysis using Mixscape from Seurat](https://github.com/epigen/mixscape_seurat) to identify perturbed cells from pooled (multimodal) CRISPR screens with sc/snRNA-seq read-out (scCRISPR-seq).
 
 # 📑 Publications
 The following publications successfully used this module for their analyses.
-
-```
-...
-```
+- [FirstAuthors et al. (202X) Journal Name - Paper Title.](https://doi.org/10.XXX/XXXX)
+- ...
 
 # ⭐ Star History
 
