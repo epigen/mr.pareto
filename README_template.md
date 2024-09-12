@@ -82,4 +82,4 @@ The following publications successfully used this module for their analyses.
 
 # ⭐ Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=epigen/atacseq_pipeline&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=epigen/atacseq_pipeline&type=Date)](https://star-history.com/#epigen/atacseq_pipeline&Date)
