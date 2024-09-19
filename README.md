@@ -9,7 +9,7 @@ Get 80% of all standard (biomedical) data science analyses done semi-automated w
 - **How**: Leverage the latest developments in workflow management to (re-)use and combine independent computational modules into arbitrarily complex analyses in combination with modern innovation methods (e.g., fast prototyping, design thinking, and agile concepts).
 - **What**: Independent computational **Modules** implemented as Snakemake workflows, encoding best practices and standard approaches, are used to scale, automate, and parallelize analyses. Snakemake's module functionality enables arbitrarily complex combinations of pre-existing modules for any **Project**. **Recipes** combine modules into the most conceivable standard analyses, thereby accelerating projects to the point of the unknown. 
 
-Altogether this enables complex, portable, transparent, reproducible, and documented analysis of biomedical data analysis at scale.
+Altogether this enables complex, portable, transparent, reproducible, and documented analyses of biomedical data at scale.
 
 # 🧩 Modules
 > _"Is it functional, multifunctional, durable, well-fitted, simple, easy to maintain, and thoroughly tested? Does it provide added value, and doesn't cause unnecessary harm? Can it be simpler? Is it an innovation?"_ - Patagonia Design Principles
