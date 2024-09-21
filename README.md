@@ -29,7 +29,7 @@ Altogether this enables complex, portable, transparent, reproducible, and docume
 | [Perturbation Analysis using Mixscape from Seurat](https://github.com/epigen/mixscape_seurat) | Bioinformatics<br>(scCRISPR-seq) | [![DOI](https://zenodo.org/badge/481635018.svg)](https://zenodo.org/badge/latestdoi/481635018) | <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/epigen/mixscape_seurat?style=plastic"> |
 
 > [!NOTE]  
-> ⭐️ **Star and share modules you find valuable** 📤 — help others discover them, and guide our focus for future work!
+> ⭐️ **Star and share modules you find valuable** 📤 — help others discover them, and guide our future work!
 
 > [!TIP]
 > For detailed instructions on the [installation](../../wiki/Installation), [configuration](../../wiki/Configuration), and [execution](../../wiki/Execution) of modules, you can check out the [wiki](https://github.com/epigen/mr.pareto/wiki). Generic instructions are also shown in the modules' respective [Snakmake workflow catalog entry](https://snakemake.github.io/snakemake-workflow-catalog).
@@ -84,7 +84,7 @@ Three components are required to use a module within your Snakemake workflow (i.
 | [scCRISPR-seq Analysis](../../wiki/scCRISPRseq-Analysis-Recipe) | From count matrix to knockout phenotype enrichemnts. | 6(-7) | ... |
 
 > [!NOTE]  
-> ⭐️ **Star this repository and share recipes you find valuable** 📤 — help others discover them, and guide our focus for future work!
+> ⭐️ **Star this repository and share recipes you find valuable** 📤 — help others find them, and guide our future work!
 
 # 📚 Resources
 - [MR.PARETO Wiki for instructions & tutorials](https://github.com/epigen/mr.pareto/wiki)
@@ -103,4 +103,4 @@ Three components are required to use a module within your Snakemake workflow (i.
     - [Singularity](https://docs.sylabs.io/guides/3.5/user-guide/index.html#) 
 
 # ⭐ Star History of Modules
-[![Star History Chart](https://api.star-history.com/svg?repos=epigen/atacseq_pipeline,epigen/unsupervised_analysis,epigen/enrichment_analysis,epigen/spilterlize_integrate,epigen/dea_limma,epigen/dea_seurat,epigen/scrnaseq_processing_seurat,epigen/mixscape_seurat,epigen/genome_tracks&type=Date)](https://star-history.com/#epigen/atacseq_pipeline&epigen/unsupervised_analysis&epigen/enrichment_analysis&epigen/spilterlize_integrate&epigen/dea_limma&epigen/dea_seurat&epigen/scrnaseq_processing_seurat&epigen/mixscape_seurat&epigen/genome_tracks&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=epigen/atacseq_pipeline,epigen/unsupervised_analysis,epigen/enrichment_analysis,epigen/spilterlize_integrate,epigen/dea_limma,epigen/dea_seurat,epigen/scrnaseq_processing_seurat,epigen/mixscape_seurat,epigen/genome_tracks&type=Timeline)](https://star-history.com/#epigen/atacseq_pipeline&epigen/unsupervised_analysis&epigen/enrichment_analysis&epigen/spilterlize_integrate&epigen/dea_limma&epigen/dea_seurat&epigen/scrnaseq_processing_seurat&epigen/mixscape_seurat&epigen/genome_tracks&Timeline)
